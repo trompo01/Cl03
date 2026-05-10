@@ -1,230 +1,226 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OUR BOOKS ON AMAZON</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Our Books on Amazon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET & BASE ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:        #040404;
-      --surface:   #0a0a0a;
-      --card-bg:   #0d0d0d;
-      --border:    #1a1a1a;
-      --neon:      #e8ff00;
-      --neon2:     #00ffe1;
-      --neon3:     #ff004c;
-      --text:      #e8e8e8;
-      --muted:     #555;
-      --white:     #ffffff;
-      --font-head: 'Cormorant Garamond', serif;
-      --font-mono: 'Space Mono', monospace;
+      --bg: #060608;
+      --surface: #0d0d12;
+      --surface2: #12121a;
+      --border: rgba(255,255,255,0.06);
+      --neon: #e8f4fd;
+      --neon-glow: #a8d8f0;
+      --neon-strong: #c8e8ff;
+      --accent: #0a0a14;
+      --text: #d4d8e0;
+      --text-dim: #6b7280;
+      --text-bright: #eef2f8;
+      --spark: #7eb8d4;
+      --spark2: #4a9bb8;
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-mono);
+      font-family: 'Space Mono', monospace;
       min-height: 100vh;
       overflow-x: hidden;
-      cursor: crosshair;
+      position: relative;
     }
 
-    /* ── STAR FIELD ── */
-    .stars {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(1px 1px at 10% 15%, #ffffff44 0%, transparent 100%),
-        radial-gradient(1px 1px at 30% 60%, #ffffff33 0%, transparent 100%),
-        radial-gradient(1px 1px at 60% 20%, #ffffff55 0%, transparent 100%),
-        radial-gradient(1px 1px at 80% 75%, #ffffff22 0%, transparent 100%),
-        radial-gradient(1px 1px at 50% 90%, #ffffff44 0%, transparent 100%),
-        radial-gradient(2px 2px at 90% 10%, var(--neon) 0%, transparent 100%),
-        radial-gradient(2px 2px at 5% 80%, var(--neon2) 0%, transparent 100%);
-    }
-
-    /* ── SCANLINE OVERLAY ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent, transparent 2px,
-        rgba(0,0,0,.06) 2px, rgba(0,0,0,.06) 4px
-      );
+    /* ── STARFIELD ── */
+    #stars {
+      position: fixed;
+      inset: 0;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.4); }
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
     }
 
     /* ── LAYOUT ── */
-    .page-wrapper {
+    .page-wrap {
       position: relative;
-      z-index: 1;
-      max-width: 1280px;
+      z-index: 2;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem 6rem;
+      padding: 0 24px 80px;
     }
 
     /* ── HEADER ── */
     header {
       text-align: center;
-      margin-bottom: 5rem;
+      padding: 72px 0 56px;
       position: relative;
     }
-
     .header-line {
-      width: 120px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--neon), transparent);
-      margin: 0 auto 1.5rem;
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-glow), transparent);
+      margin-bottom: 40px;
+      opacity: 0.4;
     }
-
-    header h1 {
-      font-family: var(--font-head);
-      font-size: clamp(2.6rem, 6vw, 5.2rem);
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--spark);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 300;
-      letter-spacing: .25em;
+      color: var(--text-bright);
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      text-shadow:
+        0 0 40px rgba(168,216,240,0.15),
+        0 0 80px rgba(168,216,240,0.06);
+    }
+    h1 span {
+      font-style: italic;
+      color: var(--neon-glow);
+    }
+    .header-sub {
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
       text-transform: uppercase;
-      color: var(--white);
-      line-height: 1;
-      position: relative;
     }
-
-    header h1 .accent {
-      color: var(--neon);
-      text-shadow: 0 0 20px var(--neon), 0 0 60px var(--neon);
-    }
-
-    header .tagline {
-      margin-top: 1rem;
-      font-size: .65rem;
-      letter-spacing: .35em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .header-deco {
-      position: absolute;
-      top: -1.5rem; left: 50%;
-      transform: translateX(-50%);
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, transparent, var(--neon));
+    .header-line-bottom {
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-glow), transparent);
+      margin-top: 40px;
+      opacity: 0.25;
     }
 
     /* ── BOOK GRID ── */
     .books-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      perspective: 1200px;
-    }
-
-    @media (max-width: 768px) {
-      .books-grid { grid-template-columns: 1fr; }
+      gap: 32px;
+      margin-top: 48px;
     }
 
     /* ── BOOK CARD ── */
     .book-card {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2.5rem 2rem 2rem;
+      border-radius: 4px;
+      padding: 36px 32px 32px;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform .08s linear, box-shadow .3s ease;
+      transition: transform 0.08s ease-out, box-shadow 0.3s ease;
       will-change: transform;
-      animation: floatCard 6s ease-in-out infinite;
+      animation: float 6s ease-in-out infinite;
       overflow: hidden;
     }
-
     .book-card:nth-child(2) { animation-delay: -3s; }
 
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-      50%       { transform: translateY(-8px) rotateX(.5deg) rotateY(.5deg); }
+    @keyframes float {
+      0%,100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-8px) rotateX(0.5deg) rotateY(0deg); }
     }
 
-    /* Neon corner accent */
     .book-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 60px; height: 60px;
-      border-top: 2px solid var(--neon);
-      border-left: 2px solid var(--neon);
-      box-shadow: -2px -2px 12px var(--neon);
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,216,240,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
     .book-card::after {
       content: '';
       position: absolute;
-      bottom: 0; right: 0;
-      width: 60px; height: 60px;
-      border-bottom: 2px solid var(--neon);
-      border-right: 2px solid var(--neon);
-      box-shadow: 2px 2px 12px var(--neon);
-      pointer-events: none;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-glow), transparent);
+      opacity: 0.5;
     }
 
-    .book-card:nth-child(2)::before,
-    .book-card:nth-child(2)::after {
-      border-color: var(--neon2);
-      box-shadow: -2px -2px 12px var(--neon2), 2px 2px 12px var(--neon2);
+    /* ── CARD CORNER ACCENTS ── */
+    .corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      opacity: 0.5;
     }
+    .corner-tl { top: 10px; left: 10px; border-top: 1px solid var(--neon-glow); border-left: 1px solid var(--neon-glow); }
+    .corner-tr { top: 10px; right: 10px; border-top: 1px solid var(--neon-glow); border-right: 1px solid var(--neon-glow); }
+    .corner-bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--neon-glow); border-left: 1px solid var(--neon-glow); }
+    .corner-br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--neon-glow); border-right: 1px solid var(--neon-glow); }
 
-    /* ── BOOK HEADER ── */
+    /* ── BOOK META ── */
     .book-number {
-      font-size: .55rem;
-      letter-spacing: .4em;
-      color: var(--neon);
-      margin-bottom: 1.2rem;
-      display: block;
-    }
-    .book-card:nth-child(2) .book-number { color: var(--neon2); }
-
-    .book-title {
-      font-family: var(--font-head);
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.15;
-      letter-spacing: .04em;
-      margin-bottom: .6rem;
-    }
-
-    .book-subtitle {
-      font-size: .62rem;
-      color: var(--muted);
-      letter-spacing: .12em;
-      line-height: 1.6;
-      margin-bottom: .6rem;
-      font-style: italic;
-    }
-
-    .book-author {
-      font-size: .6rem;
-      letter-spacing: .3em;
-      color: var(--neon);
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--spark);
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 14px;
+      opacity: 0.6;
     }
-    .book-card:nth-child(2) .book-author { color: var(--neon2); }
+    .book-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-weight: 600;
+      color: var(--text-bright);
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+    .book-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .book-author {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--spark);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0.75;
+    }
 
     .divider {
-      width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, var(--neon), transparent);
-      margin-bottom: 1.8rem;
-      opacity: .4;
-    }
-    .book-card:nth-child(2) .divider {
-      background: linear-gradient(90deg, var(--neon2), transparent);
+      background: linear-gradient(90deg, var(--border), transparent);
+      margin-bottom: 24px;
     }
 
     /* ── LINKS TABLE ── */
@@ -232,404 +228,427 @@
       width: 100%;
       border-collapse: collapse;
     }
-
     .links-table tr + tr td {
-      border-top: 1px solid #111;
+      border-top: 1px solid rgba(255,255,255,0.03);
     }
-
     .links-table td {
-      padding: .55rem 0;
+      padding: 0;
     }
 
     /* ── SPARK LINK ── */
     .spark-link {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: .55rem;
-      font-size: .58rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--text);
+      gap: 10px;
+      padding: 9px 12px 9px 10px;
       text-decoration: none;
+      color: var(--text);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
       position: relative;
-      padding: .4rem .7rem;
-      border: 1px solid transparent;
-      border-radius: 1px;
-      transition: all .25s ease;
       transform-style: preserve-3d;
-      cursor: pointer;
-      white-space: nowrap;
+      border-radius: 2px;
+      overflow: hidden;
     }
-
-    /* Icon */
-    .spark-link .icon {
-      font-size: .75rem;
-      flex-shrink: 0;
-      transition: transform .3s ease;
-    }
-
-    /* Card 1 links */
-    .book-card:nth-child(1) .spark-link:hover {
-      color: var(--neon);
-      border-color: var(--neon);
-      background: rgba(232,255,0,.04);
-      box-shadow:
-        0 0 8px rgba(232,255,0,.3),
-        0 0 24px rgba(232,255,0,.15),
-        inset 0 0 8px rgba(232,255,0,.05);
-      transform: translateZ(10px) scale(1.02);
-      text-shadow: 0 0 8px var(--neon);
-    }
-
-    /* Card 2 links */
-    .book-card:nth-child(2) .spark-link:hover {
-      color: var(--neon2);
-      border-color: var(--neon2);
-      background: rgba(0,255,225,.04);
-      box-shadow:
-        0 0 8px rgba(0,255,225,.3),
-        0 0 24px rgba(0,255,225,.15),
-        inset 0 0 8px rgba(0,255,225,.05);
-      transform: translateZ(10px) scale(1.02);
-      text-shadow: 0 0 8px var(--neon2);
-    }
-
-    .spark-link:hover .icon { transform: rotate(15deg) scale(1.2); }
-
-    /* Spark particles */
     .spark-link::before {
-      content: '✦';
+      content: '';
       position: absolute;
-      left: -10px; top: 50%;
-      transform: translateY(-50%) scale(0);
-      font-size: .5rem;
-      color: var(--neon);
-      transition: all .2s ease;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(168,216,240,0.06), transparent);
       opacity: 0;
+      transition: opacity 0.2s ease;
     }
-    .book-card:nth-child(2) .spark-link::before { color: var(--neon2); }
+    .spark-link:hover::before { opacity: 1; }
 
-    .spark-link:hover::before {
-      transform: translateY(-50%) scale(1);
-      opacity: 1;
-      left: -14px;
+    .spark-link:hover {
+      color: var(--neon-strong);
+      transform: translateX(4px) translateZ(6px);
+      text-shadow: 0 0 12px rgba(168,216,240,0.5), 0 0 24px rgba(168,216,240,0.2);
+    }
+
+    .link-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--spark2);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .spark-link:hover .link-icon {
+      color: var(--neon-glow);
+      text-shadow: 0 0 8px var(--neon-glow);
+    }
+
+    /* spark particles on hover */
+    .spark-link .sparks {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .spark-particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--neon-glow);
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%,-50%);
+    }
+    .spark-link:hover .spark-particle:nth-child(1) { animation: spark1 0.6s ease-out forwards 0s; }
+    .spark-link:hover .spark-particle:nth-child(2) { animation: spark1 0.6s ease-out forwards 0.05s; }
+    .spark-link:hover .spark-particle:nth-child(3) { animation: spark1 0.6s ease-out forwards 0.1s; }
+    @keyframes spark1 {
+      0% { opacity: 1; top: 50%; left: 14px; width: 2px; height: 2px; }
+      100% { opacity: 0; top: calc(50% - 12px); left: 6px; width: 1px; height: 1px; }
+    }
+
+    .link-text {
+      flex: 1;
+      line-height: 1.3;
+    }
+    .link-arrow {
+      font-size: 9px;
+      color: var(--text-dim);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.2s ease;
+    }
+    .spark-link:hover .link-arrow {
+      opacity: 0.7;
+      transform: translateX(0);
+    }
+
+    /* ── GLOW PULSE on card hover ── */
+    .book-card:hover {
+      box-shadow:
+        0 0 0 1px rgba(168,216,240,0.12),
+        0 20px 60px rgba(0,0,0,0.6),
+        0 0 80px rgba(168,216,240,0.04);
     }
 
     /* ── FOOTER ── */
     footer {
       text-align: center;
-      margin-top: 5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
+      padding: 48px 0 0;
+      position: relative;
     }
-
-    footer p {
-      font-size: .55rem;
-      letter-spacing: .3em;
-      color: var(--muted);
+    .footer-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168,216,240,0.2), transparent);
+      margin-bottom: 28px;
+    }
+    .footer-text {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--text-dim);
       text-transform: uppercase;
     }
 
-    .footer-glow {
-      display: inline-block;
-      margin-top: .5rem;
-      font-size: .55rem;
-      letter-spacing: .3em;
-      color: var(--neon);
-      text-shadow: 0 0 8px var(--neon);
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .books-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .book-card {
+        padding: 28px 22px 24px;
+      }
+      h1 { font-size: 2.2rem; }
     }
 
-    /* ── MOBILE ── */
-    @media (max-width: 480px) {
-      .page-wrapper { padding: 2.5rem 1rem 4rem; }
-      .book-card    { padding: 1.8rem 1.2rem 1.5rem; }
-      .spark-link   { font-size: .52rem; }
-    }
-
-    /* ── GLOW PULSE ── */
-    @keyframes glowPulse {
-      0%, 100% { opacity: .6; }
-      50%       { opacity: 1; }
-    }
-
-    .neon-glow {
-      animation: glowPulse 3s ease-in-out infinite;
+    /* Prevent tilt animation conflict on mobile */
+    @media (hover: none) {
+      .book-card {
+        animation: float 6s ease-in-out infinite !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
 
-  <div class="page-wrapper">
+<!-- STARFIELD -->
+<div id="stars"></div>
 
-    <!-- HEADER -->
-    <header>
-      <div class="header-deco"></div>
-      <div class="header-line neon-glow"></div>
-      <h1>NUESTROS <span class="accent">LIBROS</span><br>EN AMAZON</h1>
-      <p class="tagline">Selección editorial · Ediciones disponibles · Acceso directo</p>
-    </header>
+<div class="page-wrap">
 
-    <!-- BOOKS GRID -->
-    <div class="books-grid" id="booksGrid">
+  <!-- HEADER -->
+  <header>
+    <span class="header-line"></span>
+    <p class="eyebrow">Available Now</p>
+    <h1>Our Books<br><span>on Amazon</span></h1>
+    <p class="header-sub">Select a format &amp; begin reading</p>
+    <span class="header-line-bottom"></span>
+  </header>
 
-      <!-- ── BOOK 1 ── -->
-      <div class="book-card" id="card1">
-        <span class="book-number">✦ LIBRO I</span>
-        <h2 class="book-title">WHEN FAMILIES<br>FRACTURE IN SILENCE</h2>
-        <p class="book-subtitle">A true story of silence, loss, and a mother's fight to be seen</p>
-        <p class="book-author">— Vanina Vergara</p>
-        <div class="divider"></div>
+  <!-- BOOKS GRID -->
+  <div class="books-grid" id="booksGrid">
 
-        <table class="links-table">
-          <tbody>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://open.spotify.com/episode/2ZsEHMdtUXzwtVT3jvO9G7?si=IWwanv2ERhq75Pfq0itE7w" target="_blank" rel="noopener">
-                  <span class="icon">🎧</span> Spoken Review
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0" target="_blank" rel="noopener">
-                  <span class="icon">📱</span> Kindle Version
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">
-                  <span class="icon">📖</span> Paperback
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/dp/B0GY8741Q3" target="_blank" rel="noopener">
-                  <span class="icon">📚</span> Hardcover
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0?asin=B0GX35M57P&revisionId=e5eb7937&format=3&depth=1" target="_blank" rel="noopener">
-                  <span class="icon">👁</span> Read Sample
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/product-reviews/B0GX35M57P/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">
-                  <span class="icon">✍</span> Write a Review
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank" rel="noopener">
-                  <span class="icon">🎵</span> Music &amp; Podcasts
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=eb5af085-1ace-48ee-9c61-d47621676faa&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=cc3fa529-e2e6-4fce-8dd8-10e038c3bc76" target="_blank" rel="noopener">
-                  <span class="icon">✦</span> About the Author
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- ── BOOK 1 ── -->
+    <div class="book-card" id="card1">
+      <span class="corner corner-tl"></span>
+      <span class="corner corner-tr"></span>
+      <span class="corner corner-bl"></span>
+      <span class="corner corner-br"></span>
 
-      <!-- ── BOOK 2 ── -->
-      <div class="book-card" id="card2">
-        <span class="book-number">✦ LIBRO II</span>
-        <h2 class="book-title">THE LUCID MISFIT'S<br>HANDBOOK</h2>
-        <p class="book-subtitle">Exploring The Voluntarily Invisible in our Shared Life</p>
-        <p class="book-author">— Pablo Mera</p>
-        <div class="divider"></div>
+      <p class="book-number">Book I</p>
+      <h2 class="book-title">When Families Fracture<br>in Silence</h2>
+      <p class="book-subtitle">A true story of silence, loss, and a mother's fight to be seen</p>
+      <p class="book-author">by Vanina Vergara</p>
+      <div class="divider"></div>
 
-        <table class="links-table">
-          <tbody>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://open.spotify.com/episode/5InbATRatdsqyWipxhgBuv?si=9kyvXh_LSAaAJFftOWHzPA" target="_blank" rel="noopener">
-                  <span class="icon">🎧</span> Spoken Review
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily-ebook/dp/B0GYMCM3N3/ref=tmm_kin_swatch_0" target="_blank" rel="noopener">
-                  <span class="icon">📱</span> Kindle Version
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYPK6397/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">
-                  <span class="icon">📖</span> Paperback
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch_0" target="_blank" rel="noopener">
-                  <span class="icon">📚</span> Hardcover
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch_0?asin=B0GYNYJFD5&revisionId=&format=4&depth=1" target="_blank" rel="noopener">
-                  <span class="icon">👁</span> Read Sample
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/product-reviews/B0GYNYJFD5/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">
-                  <span class="icon">✍</span> Write a Review
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://open.spotify.com/user/31egimzo6jur5btr4tmxl5cbyfpe/playlists" target="_blank" rel="noopener">
-                  <span class="icon">🎵</span> Music &amp; Podcasts
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a class="spark-link" href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=f1214e32-dde0-4b94-b78d-a04562abb350" target="_blank" rel="noopener">
-                  <span class="icon">✦</span> About the Author
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="links-table">
+        <tbody>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://open.spotify.com/episode/2ZsEHMdtUXzwtVT3jvO9G7?si=IWwanv2ERhq75Pfq0itE7w" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◎</span>
+                <span class="link-text">Spoken Review</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">⬡</span>
+                <span class="link-text">Kindle Version</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">▭</span>
+                <span class="link-text">Paperback</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/dp/B0GY8741Q3" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◫</span>
+                <span class="link-text">Hardcover</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0?asin=B0GX35M57P&revisionId=e5eb7937&format=3&depth=1" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◈</span>
+                <span class="link-text">Read Sample</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/product-reviews/B0GX35M57P/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">✦</span>
+                <span class="link-text">Write a Review</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">♫</span>
+                <span class="link-text">Handpicked Music &amp; Podcasts</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=eb5af085-1ace-48ee-9c61-d47621676faa&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=cc3fa529-e2e6-4fce-8dd8-10e038c3bc76" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◉</span>
+                <span class="link-text">About the Author</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    </div><!-- /books-grid -->
+    <!-- ── BOOK 2 ── -->
+    <div class="book-card" id="card2">
+      <span class="corner corner-tl"></span>
+      <span class="corner corner-tr"></span>
+      <span class="corner corner-bl"></span>
+      <span class="corner corner-br"></span>
 
-    <!-- FOOTER -->
-    <footer>
-      <p>Publicado en Amazon · Disponible en todo el mundo</p>
-      <span class="footer-glow neon-glow">✦ &nbsp; AMAZON BOOKS &nbsp; ✦</span>
-    </footer>
+      <p class="book-number">Book II</p>
+      <h2 class="book-title">The Lucid Misfit's<br>Handbook</h2>
+      <p class="book-subtitle">Exploring the Voluntarily Invisible in our Shared Life</p>
+      <p class="book-author">by Pablo Mera</p>
+      <div class="divider"></div>
 
-  </div><!-- /page-wrapper -->
+      <table class="links-table">
+        <tbody>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://open.spotify.com/episode/5InbATRatdsqyWipxhgBuv?si=9kyvXh_LSAaAJFftOWHzPA" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◎</span>
+                <span class="link-text">Spoken Review</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily-ebook/dp/B0GYMCM3N3/ref=tmm_kin_swatch_0" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">⬡</span>
+                <span class="link-text">Kindle Version</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYPK6397/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">▭</span>
+                <span class="link-text">Paperback</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch_0" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◫</span>
+                <span class="link-text">Hardcover</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch_0?asin=B0GYNYJFD5&revisionId=&format=4&depth=1" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◈</span>
+                <span class="link-text">Read Sample</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/product-reviews/B0GYNYJFD5/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">✦</span>
+                <span class="link-text">Write a Review</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://open.spotify.com/user/31egimzo6jur5btr4tmxl5cbyfpe/playlists" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">♫</span>
+                <span class="link-text">Handpicked Music &amp; Podcasts</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="spark-link" href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=f1214e32-dde0-4b94-b78d-a04562abb350" target="_blank" rel="noopener">
+                <span class="sparks"><span class="spark-particle"></span><span class="spark-particle"></span><span class="spark-particle"></span></span>
+                <span class="link-icon">◉</span>
+                <span class="link-text">About the Author</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <script>
-    // ── TRUE 3D TILT ON MOUSE MOVE ──
+  </div><!-- /books-grid -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-line"></div>
+    <p class="footer-text">All links open on Amazon &amp; Spotify &nbsp;·&nbsp; © 2025</p>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+  /* ── STARFIELD ── */
+  (function(){
+    const container = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 1.8 + 0.4;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%;
+        left:${Math.random()*100}%;
+        --d:${2+Math.random()*4}s;
+        --delay:${-Math.random()*6}s;
+      `;
+      container.appendChild(s);
+    }
+  })();
+
+  /* ── 3D TILT ── */
+  (function(){
     const cards = document.querySelectorAll('.book-card');
+    const MAX_TILT = 10; // degrees
+
+    function onMove(e, card) {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const dx = (clientX - cx) / (rect.width / 2);
+      const dy = (clientY - cy) / (rect.height / 2);
+      const rotX = -dy * MAX_TILT;
+      const rotY = dx * MAX_TILT;
+      card.style.animation = 'none';
+      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(4px)`;
+    }
+
+    function onLeave(card) {
+      card.style.transform = '';
+      card.style.animation = '';
+    }
 
     cards.forEach(card => {
-      let animFrame;
-      let isHovered = false;
-
-      card.addEventListener('mouseenter', () => {
-        isHovered = true;
-        // Pause CSS float animation while tilt is active
-        card.style.animationPlayState = 'paused';
-      });
-
-      card.addEventListener('mouseleave', () => {
-        isHovered = false;
-        card.style.animationPlayState = 'running';
-        // Smoothly reset
-        smoothReset(card);
-      });
-
-      card.addEventListener('mousemove', (e) => {
-        if (!isHovered) return;
-        cancelAnimationFrame(animFrame);
-        animFrame = requestAnimationFrame(() => {
-          const rect = card.getBoundingClientRect();
-          const cx = rect.left + rect.width  / 2;
-          const cy = rect.top  + rect.height / 2;
-          const dx = (e.clientX - cx) / (rect.width  / 2);  // -1 to +1
-          const dy = (e.clientY - cy) / (rect.height / 2);  // -1 to +1
-
-          const rotX = -dy * 14;   // max ±14°
-          const rotY =  dx * 14;
-          const tz   = 20;
-
-          card.style.transform =
-            `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${tz}px)`;
-
-          // Dynamic neon shadow intensity
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          const glowAlpha = 0.15 + dist * 0.35;
-          const isCard2 = card.id === 'card2';
-          const color   = isCard2 ? `0,255,225` : `232,255,0`;
-          card.style.boxShadow =
-            `0 ${16 + dist*20}px ${40 + dist*40}px rgba(${color},${glowAlpha.toFixed(2)}),
-             0 0 60px rgba(${color},${(glowAlpha*.4).toFixed(2)})`;
-        });
-      });
-    });
-
-    function smoothReset(card) {
-      const start = performance.now();
-      const duration = 500;
-
-      // Capture current transform (just reset to neutral)
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
-        const rotX = 0;
-        const rotY = 0;
-        // Just clear it; CSS float takes over
-        if (t < 1) {
-          card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
-          requestAnimationFrame(step);
-        } else {
-          card.style.transform = '';
-          card.style.boxShadow = '';
-        }
+      // Only apply tilt on non-touch devices
+      if (window.matchMedia('(hover: hover)').matches) {
+        card.addEventListener('mousemove', e => onMove(e, card));
+        card.addEventListener('mouseleave', () => onLeave(card));
       }
-      requestAnimationFrame(step);
-    }
-
-    // ── SPARK PARTICLES ON LINK CLICK ──
-    document.querySelectorAll('.spark-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        spawnSparks(e.clientX, e.clientY, this.closest('.book-card').id === 'card2');
-      });
     });
-
-    function spawnSparks(x, y, isSecond) {
-      const color = isSecond ? '#00ffe1' : '#e8ff00';
-      for (let i = 0; i < 10; i++) {
-        const spark = document.createElement('div');
-        const angle = Math.random() * 2 * Math.PI;
-        const dist  = 30 + Math.random() * 60;
-        const size  = 2 + Math.random() * 3;
-        spark.style.cssText = `
-          position: fixed;
-          left: ${x}px; top: ${y}px;
-          width: ${size}px; height: ${size}px;
-          border-radius: 50%;
-          background: ${color};
-          box-shadow: 0 0 6px ${color};
-          pointer-events: none;
-          z-index: 9998;
-          transition: transform .4s ease-out, opacity .4s ease-out;
-          opacity: 1;
-        `;
-        document.body.appendChild(spark);
-        requestAnimationFrame(() => {
-          spark.style.transform =
-            `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px) scale(0)`;
-          spark.style.opacity = '0';
-        });
-        setTimeout(() => spark.remove(), 450);
-      }
-    }
-  </script>
+  })();
+</script>
 </body>
 </html>
