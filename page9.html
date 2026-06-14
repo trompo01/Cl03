@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lucid Misfit's Handbook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('peng.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 3px solid #00ff88;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        h1 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+            color: #ff006e;
+            text-shadow: 0 0 8px rgba(255, 0, 110, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .author {
+            font-size: 0.95rem;
+            color: #ffff00;
+            font-style: italic;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            gap: 20px;
+        }
+
+        .content-section {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .table-links {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-links td {
+            padding: 10px;
+            border-bottom: 1px solid #ff006e;
+            text-align: left;
+        }
+
+        .table-links a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .table-links a:hover {
+            color: #ff006e;
+            border: 1px solid #ff006e;
+            background: rgba(255, 0, 110, 0.1);
+            transform: translateX(5px);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .button-grid {
+                gap: 12px;
+            }
+        }
+
+        .button-3d {
+            aspect-ratio: 1.2;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+            background: rgba(0, 20, 40, 0.7);
+        }
+
+        .button-3d:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+            border-color: #ff006e;
+        }
+
+        .button-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8) contrast(1.2);
+            transition: filter 0.3s ease;
+        }
+
+        .button-3d:hover img {
+            filter: brightness(1) contrast(1.3);
+        }
+
+        .button-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            color: #00ff88;
+            padding: 10px 8px 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.7rem;
+            border-top: 1px solid #ff006e;
+        }
+
+        footer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00ff88;
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-btn {
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border: 2px solid #00ff88;
+            background: rgba(0, 20, 40, 0.9);
+            color: #00ff88;
+            border-radius: 8px;
+            cursor: button;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .footer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+            border-color: #ff006e;
+            color: #ff006e;
+        }
+
+        .section-title {
+            color: #ffff00;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .row-label {
+            font-size: 0.8rem;
+            color: #ff006e;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgmusic" autoplay loop>
+        <source src="kelvin.aac" type="audio/aac">
+    </audio>
+
+    <header>
+        <h1>THE LUCID MISFIT'S HANDBOOK</h1>
+        <p class="subtitle">Exploring The Voluntarily Invisible in our Shared Life</p>
+        <p class="author">Author: Pablo Mera</p>
+    </header>
+
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">📚 Available Links</h2>
+            <table class="table-links">
+                <tr><td><a href="https://open.spotify.com/episode/5InbATRatdsqyWipxhgBuv?si=9kyvXh_LSAaAJFftOWHzPA" target="_blank">🎙️ Spoken Review</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily-ebook/dp/B0GYMCM3N3/ref=tmm_kin_swatch₀" target="_blank">📱 Kindle Version</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYPK6397/ref=tmm_pap_swatch₀" target="_blank">📖 Paperback</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch₀" target="_blank">📘 Hardcover</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYNYJFD5/ref=tmm_hrd_swatch_0?asin=B0GYNYJFD5&revisionId=&format=4&depth=1" target="_blank">👀 Read sample</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/product-reviews/B0GYNYJFD5/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Write a Review</a></td></tr>
+                <tr><td><a href="https://open.spotify.com/user/31egimzo6jur5btr4tmxl5cbyfpe/playlists" target="_blank">🎵 Handpicked Music and Podcasts</a></td></tr>
+                <tr><td><a href="https://www.goodreads.com/book/show/251502207-the-lucid-misfit-s-handbook" target="_blank">📚 Goodreads</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=f1214e32-dde0-4b94-b78d-a04562abb350" target="_blank">👤 About the Author</a></td></tr>
+                <tr><td><a href="https://pablomera.blogspot.com/" target="_blank">✍️ Blog</a></td></tr>
+            </table>
+
+            <h3 class="row-label">🏪 Buy on different platforms:</h3>
+            <div class="button-grid">
+                <a href="https://www.amazon.com/LUCID-MISFITS-HANDBOOK-Exploring-Voluntarily/dp/B0GYPK6397/ref=tmm_pap_swatch₀" class="button-3d" target="_blank">
+                    <img src="amazon.png" alt="Amazon">
+                    <span class="button-label">Amazon</span>
+                </a>
+                <a href="https://www.booksamillion.com/p/Lucid-Misfits-Handbook/Pablo-Mera/9798259022409" class="button-3d" target="_blank">
+                    <img src="bam.png" alt="Books a Million">
+                    <span class="button-label">BAM</span>
+                </a>
+                <a href="https://bookshop.org/p/books/the-lucid-misfit-s-handbook-exploring-the-voluntarily-invisible-in-our-shared-life-pablo-mera/7e540685097c0cf9?ean=9798259022409&next=t" class="button-3d" target="_blank">
+                    <img src="bookshoporg.png" alt="Bookshop.org">
+                    <span class="button-label">Bookshop</span>
+                </a>
+                <a href="https://www.books.com.tw/products/F01c038522" class="button-3d" target="_blank">
+                    <img src="bookstw.png" alt="Books.com.tw">
+                    <span class="button-label">Books TW</span>
+                </a>
+                <a href="https://www.thriftbooks.com/w/the-lucid-misfits-handbook-exploring-the-voluntarily-invisible-in-our-shared-life_pablo-mera/58972239/?resultid=dee8c703-993e-4657-8368-a7df64e8fef2#edition=75652406&idiq=89053598" class="button-3d" target="_blank">
+                    <img src="th.png" alt="ThriftBooks">
+                    <span class="button-label">ThriftBooks</span>
+                </a>
+                <a href="https://www.saxo.com/dk/the-lucid-misfits-handbook-exploring-the-voluntarily-invisible-in-our-shared-life_bog_9798259022409" class="button-3d" target="_blank">
+                    <img src="saxo.jpg" alt="Saxo">
+                    <span class="button-label">Saxo</span>
+                </a>
+                <a href="https://www.ibs.it/lucid-misfit-s-handbook-exploring-libro-inglese-pablo-mera/e/9798259022409" class="button-3d" target="_blank">
+                    <img src="ibs.png" alt="IBS.it">
+                    <span class="button-label">IBS</span>
+                </a>
+                <a href="https://www.lafeltrinelli.it/lucid-misfit-s-handbook-exploring-libro-inglese-pablo-mera/e/9798259022409" class="button-3d" target="_blank">
+                    <img src="feltri.png" alt="La Feltrinelli">
+                    <span class="button-label">Feltrinelli</span>
+                </a>
+                <a href="https://www.bol.com/nl/nl/p/the-lucid-misfit-s-handbook-exploring-the-voluntarily-invisible-in-our-shared-life/9300000280579611/" class="button-3d" target="_blank">
+                    <img src="bol.jpg" alt="BOL">
+                    <span class="button-label">BOL</span>
+                </a>
+                <a href="https://www.enbook.cz/cs/kniha/the-lucid-misfit-s-handbook_52229690" class="button-3d" target="_blank">
+                    <img src="enbook.jpeg" alt="Enbook">
+                    <span class="button-label">Enbook</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="page1.html" class="footer-btn">➡️ NEXT / SIGUIENTE</a>
+        <a href="page8.html" class="footer-btn">⬅️ PREVIOUS / ANTERIOR</a>
+    </footer>
+
+    <script>
+        document.getElementById('bgmusic').volume = 0.3;
+    </script>
+</body>
+</html>

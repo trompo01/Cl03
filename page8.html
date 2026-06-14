@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Families Fracture in Silence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('veng.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 3px solid #00ff88;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        h1 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+            color: #ff006e;
+            text-shadow: 0 0 8px rgba(255, 0, 110, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .author {
+            font-size: 0.95rem;
+            color: #ffff00;
+            font-style: italic;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            gap: 20px;
+        }
+
+        .content-section {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .table-links {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-links td {
+            padding: 10px;
+            border-bottom: 1px solid #ff006e;
+            text-align: left;
+        }
+
+        .table-links a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .table-links a:hover {
+            color: #ff006e;
+            border: 1px solid #ff006e;
+            background: rgba(255, 0, 110, 0.1);
+            transform: translateX(5px);
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 480px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .button-3d {
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 3px solid #00ff88;
+            background: rgba(0, 20, 40, 0.8);
+            color: #00ff88;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button-3d:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 255, 136, 0.5);
+            border-color: #ff006e;
+            color: #ff006e;
+        }
+
+        .button-3d img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        footer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00ff88;
+            box-shadow: 0 -4px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-btn {
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border: 2px solid #00ff88;
+            background: rgba(0, 20, 40, 0.9);
+            color: #00ff88;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+            border-color: #ff006e;
+            color: #ff006e;
+        }
+
+        .section-title {
+            color: #ffff00;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgmusic" autoplay loop>
+        <source src="kelvin.aac" type="audio/aac">
+    </audio>
+
+    <header>
+        <h1>WHEN FAMILIES FRACTURE IN SILENCE</h1>
+        <p class="subtitle">A true story of silence, loss, and a mother's fight to be seen</p>
+        <p class="author">Author: Vanina Vergara</p>
+    </header>
+
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">📚 Available Links</h2>
+            <table class="table-links">
+                <tr><td><a href="https://open.spotify.com/episode/2ZsEHMdtUXzwtVT3jvO9G7?si=IWwanv2ERhq75Pfq0itE7w" target="_blank">🎙️ Spoken Review</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch₀" target="_blank">📱 Kindle Version</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch₀" target="_blank">📖 Paperback</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/dp/B0GY8741Q3" target="_blank">📘 Hardcover</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0?asin=B0GX35M57P&revisionId=e5eb7937&format=3&depth=1" target="_blank">👀 Read sample</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/product-reviews/B0GX35M57P/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Write a Review</a></td></tr>
+                <tr><td><a href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank">🎵 Handpicked Music and Podcasts</a></td></tr>
+                <tr><td><a href="https://www.goodreads.com/book/show/251052005-when-families-fracture-in-silence" target="_blank">📚 Goodreads</a></td></tr>
+                <tr><td><a href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=eb5af085-1ace-48ee-9c61-d47621676faa&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=cc3fa529-e2e6-4fce-8dd8-10e038c3bc76" target="_blank">👤 About the Author</a></td></tr>
+            </table>
+
+            <div class="button-group">
+                <a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch₀" class="button-3d" target="_blank">
+                    <img src="veng.jpg" alt="Book">
+                    Amazon
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="page9.html" class="footer-btn">➡️ NEXT / SIGUIENTE</a>
+        <a href="page6.html" class="footer-btn">⬅️ PREVIOUS / ANTERIOR</a>
+    </footer>
+
+    <script>
+        document.getElementById('bgmusic').volume = 0.3;
+    </script>
+</body>
+</html>
