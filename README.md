@@ -1,239 +1,282 @@
-# Bibliografía
+# Bibliografía - Vanina Vergara & Pablo Mera
 
-Bilingual bibliography website for authors Vanina Vergara and Pablo Mera. Dark, cinematic design with 3D interactive buttons, full retailer linking, and mobile optimization.
+A stunning, bilingual bibliography website showcasing the works of acclaimed authors **Vanina Vergara** and **Pablo Mera**. This cinematic, dark-themed single-page application features 9 comprehensive pages with interactive 3D buttons, embedded background music, flag animations, and links to international book retailers.
 
-## 📋 Contents
+## 🌟 Features
 
-**9 Pages — Spanish & English:**
-- **Page #1** — Welcome/Hub with book grid (2×4 layout)
-- **Page #2** — *Cuando la Familia se Rompe en Silencio* (Spanish)
-- **Page #3** — *Manual del Inadaptado Lúcido* (Spanish)
-- **Page #4** — *El Jardín de los que Volvieron* (Spanish)
-- **Page #5** — *El Jardín de Luma* (Spanish)
-- **Page #6** — *Caracol Menú de Autor* (Spanish)
-- **Page #7** — *Caracol Author's Menu* (English)
-- **Page #8** — *When Families Fracture in Silence* (English)
-- **Page #9** — *The Lucid Misfit's Handbook* (English)
+### Design & Aesthetics
+- **Dark Cinematic Aesthetic**: Deep navy backgrounds with vibrant cyan and purple neon accents
+- **True 3D Tilt Effects**: Mouse-responsive perspective transforms on all buttons
+- **Sparkling Animations**: Pulsing button effects with smooth hover states
+- **Responsive Design**: Optimized for desktop, tablet, and mobile (iOS & Android)
+- **High Contrast**: White text on dark backgrounds for maximum readability
 
-## 🎨 Design Features
+### Interactive Elements
+- **3D Buttons**: Custom-styled clickable buttons with depth, shadow, and glow effects
+- **Flag Animations**: Scrolling country flags (Spain 🇪🇸, Paraguay 🇵🇾, Argentina 🇦🇷, Uruguay 🇺🇾, USA 🇺🇸, UK 🇬🇧, Australia 🇦🇺)
+- **Music Player**: Auto-playing background music (abidoza.aac) with toggle control
+- **Grid Navigation**: 2×4 book cover grid on landing page linking to author bibliographies
+- **Retailer Grid Links**: 8-16 international book retailers per title
 
-- **Dark theme** with neon cyan/green accents
-- **3D tilt effects** on mouse move (desktop) and touch (mobile)
-- **Sparkling animations** on hero button
-- **Floating animations** and smooth transitions
-- **Alternating text** (AHORA/COMPRALOS) on hero button
-- **Scrolling flag animations** (Paraguay, Spain, Argentina, Uruguay, USA, UK, Australia)
-- **Full mobile responsiveness** (2-column grid on mobile, 4-column on desktop)
-- **Background images** per page with overlay for text readability
-- **Looping background audio** (kelvin.aac) — user interaction required to start
-- **Retailer grids** with logo buttons linking to Amazon, MercadoLibre, ThriftBooks, IBS, La Feltrinelli, Books a Million, Bookshop.org, and 10+ more
+### Content
+- **9 Complete Pages**:
+  1. Bibliografía (Welcome/Navigation)
+  2. Cuando la Familia se Rompe en Silencio (Vanina Vergara - Spanish)
+  3. Manual del Inadaptado Lúcido (Pablo Mera - Spanish)
+  4. El Jardín de los que Volvieron (Vanina Vergara - Spanish)
+  5. El Jardín de Luma (Vanina Vergara - Spanish)
+  6. Caracol - Menú de Autor (Pablo Mera - Spanish)
+  7. Caracol Author's Menu (Pablo Mera - English)
+  8. When Families Fracture in Silence (Vanina Vergara - English)
+  9. The Lucid Misfit's Handbook (Pablo Mera - English)
 
-## 🔗 Links Included
+- **Complete Metadata**: Book titles, subtitles, author names, descriptions
+- **Comprehensive Links**: Spotify, YouTube, Goodreads, Instagram, blogs, Google Calendar scheduling
+- **International Retailers**: Amazon, Mercado Libre, ThriftBooks, IBS, Walmart, Saxo, Adlibris, and 15+ more
 
-### Internal Navigation
-- All 9 pages interconnected via "NEXT" and "PREVIOUS" footer buttons
-- Grid buttons on Page #1 link to each book page
-- Language selector buttons (ESPAÑOL/ENGLISH)
+### Technical Features
+- **Single HTML File**: Entire site in one `index.html` for easy deployment
+- **No Dependencies**: Pure HTML5, CSS3, and JavaScript
+- **Embedded Audio**: Background music autoplay with volume control
+- **Keyboard Navigation**: Arrow keys to navigate between pages
+- **Mobile-First**: Responsive grid layouts and touch-friendly buttons
+- **Performance**: Optimized for fast loading and smooth animations
 
-### External Links
-- **11 links per book page** (Kindle, paperback, hardcover, reviews, Spotify, Instagram, Google Calendar, Goodreads, author page, blog)
-- **10 retailer buttons per book** (where applicable)
-- **WhatsApp hero button** → `http://wa.link/21ft32`
-- All URLs verified for functionality
-
-## 📁 Files Required
+## 📦 Files Included
 
 ```
-your-repo/
-├── index.htm                 (Main HTML file — THIS file)
-├── README.md                (This documentation)
-├── kelvin.aac               (Background audio — must be in same directory)
-└── Images/ (in same directory as index.htm):
-    ├── vesp.jpg            (Cuando la Familia Spanish cover)
-    ├── pesp.jpg            (Manual del Inadaptado Spanish cover)
-    ├── lamp.jpg            (El Jardín de los que Volvieron cover)
-    ├── EJDL.jpg            (El Jardín de Luma cover)
-    ├── crc.jpg             (Caracol Spanish cover)
-    ├── CRCENG.png          (Caracol English cover)
-    ├── veng.jpg            (When Families Fracture cover)
-    ├── peng.jpg            (The Lucid Misfit's Handbook cover)
-    ├── amazon.png          (Retailer logo)
-    ├── mercadolibre.png    (Retailer logo)
-    ├── th.png              (ThriftBooks logo)
-    ├── ibs.png             (IBS Italy logo)
-    ├── feltri.png          (La Feltrinelli logo)
-    ├── bam.png             (Books a Million logo)
-    ├── adlibris.png        (Adlibris logo)
-    ├── enbook.jpeg         (Enbook logo)
-    ├── better.png          (Better Read logo)
-    ├── iber.png            (Iberlibro logo)
-    ├── Foyles.png          (Foyles logo)
-    ├── big.png             (Big Shopper logo)
-    ├── bookshoporg.png     (Bookshop.org logo)
-    ├── bookstw.png         (Books.com.tw logo)
-    ├── saxo.jpg            (Saxo logo)
-    ├── bol.jpg             (Bol.com logo)
-    └── libristo.jpg        (Libristo logo)
+.
+├── index.html          # Complete website (9 pages, all content, styling & JavaScript)
+├── README.md           # This file
+├── abidoza.aac         # Background music (place in same directory as index.html)
+├── py.jpg              # Paraguay flag image
+├── vesp.jpg            # Spanish edition book cover
+├── pesp.jpg            # Spanish edition book cover
+├── lamp.jpg            # Book cover image
+├── EJDL.jpg            # Book cover image
+├── crc.jpg             # Caracol Spanish cover
+├── CRCENG.png          # Caracol English cover
+├── veng.jpg            # English edition book cover
+├── peng.jpg            # English edition book cover
+├── amazon.png          # Retailer logo
+├── mercadolibre.png    # Retailer logo
+├── v1.png              # Author image
+├── ibs.png             # Retailer logo
+├── th.png              # ThriftBooks logo
+├── falter.png          # Retailer logo
+├── feltri.png          # La Feltrinelli logo
+├── orell.png           # Orell Füssli logo
+├── enbook.jpeg         # Retailer logo
+├── najla.jpg           # Retailer logo
+├── iber.png            # Iberlibro logo
+├── walmart.png         # Walmart logo
+├── adlibris.png        # Adlibris logo
+├── bam.png             # Books-A-Million logo
+├── Foyles.png          # Foyles logo
+├── better.png          # Better Read logo
+├── big.png             # Big Shopper logo
+├── eslitelogo.png      # Eslite Taiwan logo
+├── amazonjp.jpeg       # Amazon Japan logo
+├── libristo.jpg        # Libristo logo
+├── bol.jpg             # Bol.com logo
+├── saxo.jpg            # Saxo logo
+├── bookshoporg.png     # Bookshop.org logo
+├── bookstw.png         # Books.com.tw logo
+└── amazones.png        # Amazon Spain logo
 ```
 
-## 🚀 GitHub Pages Deployment
+## 🚀 Deployment to GitHub Pages
 
-### Option 1: Upload via GitHub Web Interface
-1. Create a new GitHub repository named `bibliografica` (or any name)
-2. Click "Add file" → "Upload files"
-3. Upload `index.htm`, `README.md`, `kelvin.aac`, and all images
-4. Commit changes
-5. Go to **Settings** → **Pages** → **Build and deployment**
-6. Select **Source**: `Deploy from a branch`
-7. Select **Branch**: `main` → `/root`
-8. Save and wait ~1-2 minutes for deployment
-9. Your site will be live at: `https://username.github.io/bibliografica`
+### Step 1: Create a GitHub Repository
+1. Go to [GitHub](https://github.com) and create a new repository
+2. Name it: `your-username.github.io` (for user site) or any name for project site
+3. Initialize with a README
 
-### Option 2: Upload via Git Command Line
+### Step 2: Prepare Your Files
+1. Create a folder locally (e.g., `bibliografia-site`)
+2. Copy all files listed above into this folder
+3. Ensure `index.html` is in the root directory
+
+### Step 3: Upload to GitHub
+**Option A: Using Git Command Line**
 ```bash
-# Clone your GitHub repo
-git clone https://github.com/username/bibliografica.git
-cd bibliografica
-
-# Add all files
+cd /path/to/bibliografia-site
+git init
 git add .
-
-# Commit with message
-git commit -m "Add Bibliografía website with 9 pages and retailer links"
-
-# Push to GitHub
-git push origin main
+git commit -m "Initial commit: Bilingual bibliography website"
+git remote add origin https://github.com/your-username/repository-name.git
+git branch -M main
+git push -u origin main
 ```
 
-### Option 3: Using the `trompo01` Account (Existing User)
-If you're using your existing GitHub account:
-1. Navigate to your repo at `https://github.com/trompo01/bibliografica`
-2. Upload files the same way (GitHub web interface or Git CLI)
-3. Site will deploy to: `https://trompo01.github.io/bibliografica`
+**Option B: Using GitHub Desktop**
+1. Open GitHub Desktop
+2. Click "Create a New Repository"
+3. Choose the local path where your files are
+4. Publish to GitHub
 
-## 🎵 Audio Setup
+**Option C: Drag & Drop**
+1. In your GitHub repository, click "Add file" → "Upload files"
+2. Drag and drop all files
+3. Commit changes
 
-The website includes looping background audio (`kelvin.aac`):
-- **Autoplay policy**: Most browsers require user interaction before audio plays
-- **Fallback**: Click anywhere on the page, then audio starts automatically
-- **Volume**: Set to 30% to not overwhelm
-- **Loop**: Continuous loop throughout navigation
+### Step 4: Enable GitHub Pages
+1. Go to repository Settings
+2. Scroll to "GitHub Pages" section
+3. Select `main` branch as source
+4. Save
 
-To disable or replace audio:
-1. Remove `kelvin.aac` upload
-2. Edit `index.htm`, find the JavaScript audio section
-3. Comment out or delete the audio initialization code
+Your site will be live at:
+- `https://your-username.github.io` (if named `your-username.github.io`)
+- `https://your-username.github.io/repository-name` (for project repositories)
 
-## 🔍 Link Verification Checklist
+## 🎨 Design Specifications
 
-All links have been configured and tested:
+### Color Palette
+- **Background**: `#0a0e27` (deep navy)
+- **Primary Accent**: `#00d4ff` (cyan/neon blue)
+- **Secondary Accent**: `#9d4edd` (purple)
+- **Highlight Accent**: `#ff006e` (neon pink)
+- **Text**: `#ffffff` (white)
+- **Neon Black**: `#1a1a2e` (dark container)
 
-### ✅ Internal Navigation
-- [x] Page 1 → Grid buttons to all 8 book pages
-- [x] Page 1 → ESPAÑOL button to Page 2
-- [x] Page 1 → ENGLISH button to Page 7
-- [x] All pages → NEXT/PREVIOUS footer buttons
-- [x] Page 9 → NEXT button returns to Page 1 (circular)
+### Typography
+- **Font Family**: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
+- **Display Text**: 2.5rem, bold, letter-spaced
+- **Body Text**: 0.95rem, line-height 1.6
+- **Link Color**: Cyan with hover glow effects
 
-### ✅ External Links (Sample)
-- [x] Hero button → WhatsApp: `http://wa.link/21ft32`
-- [x] Page 2 → Amazon Paperback: Cuando la Familia...
-- [x] Page 2 → MercadoLibre: Cuando la Familia...
-- [x] Page 3 → 11 links (Kindle, paperback, Spotify, etc.)
-- [x] Page 3 → 8 retailer buttons
-- [x] Page 4 → 12 links + 10 retailer buttons
-- [x] Page 5 → 12 links + 6 retailer buttons
-- [x] Page 6 → 11 links + 10 retailer buttons (Spanish)
-- [x] Page 7 → 10 links + 4 retailer buttons (English)
-- [x] Page 8 → 9 links + 1 retailer button (Amazon)
-- [x] Page 9 → 10 links + 10 retailer buttons
+### Responsive Breakpoints
+- **Desktop**: Full grid layout with 2-4 columns
+- **Tablet**: 768px breakpoint - adjusted padding and font sizes
+- **Mobile**: Single column, 2-column grids, touch-optimized spacing
 
-### ✅ Retailer Coverage
-- Amazon (all formats: Kindle, paperback, hardcover)
-- MercadoLibre (Argentina/Paraguay)
-- ThriftBooks
-- IBS (Italy)
-- La Feltrinelli
-- Books a Million
-- Bookshop.org
-- Adlibris
-- Enbook
-- Better Read
-- Iberlibro
-- Foyles
-- Big Shopper
-- Books.com.tw
-- Saxo
-- Bol.com
-- Libristo
+## 🎵 Music & Audio
+
+- **Background Music**: `abidoza.aac` auto-plays on load
+- **Volume**: Preset to 30% for comfortable listening
+- **Controls**: Music toggle button (♪) in bottom-right corner
+- **Loop**: Music loops continuously throughout session
+
+## 🔗 Link Categories
+
+### Retailer Links (Updated)
+- Amazon (multiple editions: Kindle, Paperback, Hardcover)
+- Amazon Spain (amazones.com)
+- Amazon Japan (amazon.co.jp)
+- Mercado Libre (mercadolibre.com.ar)
+- ThriftBooks (thriftbooks.com)
+- Walmart (walmart.com)
+- Books-A-Million (booksamillion.com)
+- Bookshop.org (bookshop.org)
+- IBS (ibs.it)
+- La Feltrinelli (lafeltrinelli.it)
+- Iberlibro (iberlibro.com)
+- Orell Füssli (orellfuessli.ch)
+- Adlibris (adlibris.com)
+- Saxo (saxo.com)
+- Bol.com (bol.com)
+- Enbook (enbook.cz)
+- Libristo (libristo.hu, libristo.si)
+- Better Read (betterread.com.au)
+- Big Shopper (bigshopper.nl)
+- Eslite Taiwan (eslite.com)
+
+### Social & Author Links
+- **Spotify**: Spoken reviews, author playlists
+- **YouTube**: Video reviews
+- **Instagram**: Author accounts (@caracol.menudeautor, @el.jardin.de.luma)
+- **Goodreads**: Book reviews and ratings
+- **Blogs**: Author blogs (pablomera.blogspot.com)
+- **Google Calendar**: Scheduling links for author conversations
+- **WhatsApp**: Direct contact (http://wa.link/21ft32)
+
+## 🎮 User Interactions
+
+### Navigation
+- **Click** grid buttons to navigate between pages
+- **Arrow Keys** (← →) to move between pages
+- **Language Buttons** on landing page to jump to Spanish/English sections
+- **Footer Navigation** on each content page (NEXT/SIGUIENTE, PREVIOUS/ANTERIOR)
+
+### Button Hover Effects
+- 3D perspective transform
+- Shadow and glow intensification
+- Scale transform on grid items
+- Color transitions on text links
+
+### Music Control
+- Click **♪** button to toggle music on/off
+- Visual pulse animation shows playing state
+- Volume persists at 30% for all plays
 
 ## 📱 Mobile Optimization
 
-- **Responsive grid**: 2 columns on mobile, scales to 4 on desktop
-- **Touch-friendly buttons**: Tap zones optimized for Android/iOS
-- **3D tilt**: Enabled on desktop, touch equivalent on mobile
-- **Fast load**: Single HTML file, no external dependencies
-- **Viewport meta tags**: Proper scaling for all device widths
+- **Viewport Meta Tag**: Responsive scaling
+- **Touch-Friendly**: Large touch targets (50px+ buttons)
+- **Flexible Grids**: 2-column layouts on mobile, expand on desktop
+- **Readable Fonts**: Minimum 16px on mobile
+- **Optimized Images**: Scaled to screen size
+- **Scrollable Tables**: Horizontal scroll for link tables on small screens
 
-## 🎯 Browser Support
+## 🔧 Customization
 
-- ✅ Chrome/Chromium (desktop & mobile)
-- ✅ Firefox (desktop & mobile)
-- ✅ Safari (desktop & mobile)
-- ✅ Edge (desktop)
-- ⚠️ IE11 (not supported — uses modern CSS/JS)
+### Change Music
+Replace `abidoza.aac` with your own audio file:
+```html
+<audio id="bgMusic" autoplay loop>
+    <source src="your-music.aac" type="audio/aac">
+</audio>
+```
 
-## ⚙️ Customization
-
-### Change Colors
-Edit the CSS variables at the top of `index.htm`:
+### Update Colors
+Edit CSS variables in `<style>` section:
 ```css
 :root {
-    --neon-green: #00ff41;      /* Change this */
-    --neon-cyan: #00d9ff;       /* Change this */
-    --dark-bg: #0a0e27;         /* Change this */
+    --bg-dark: #0a0e27;
+    --accent-cyan: #00d4ff;
+    --accent-purple: #9d4edd;
+    --accent-pink: #ff006e;
 }
 ```
 
-### Add/Remove Pages
-1. Copy a page `<div class="page">` block
-2. Give it a unique `id` (e.g., `id="page10"`)
-3. Add navigation buttons calling `goToPage('page10')`
-4. Update footer navigation in adjacent pages
+### Modify Retailer Links
+Edit the grid buttons in each page section to add/remove retailers or change URLs.
 
-### Replace Audio
-1. Upload your .aac, .mp3, or .ogg file
-2. Edit the `<audio>` src in JavaScript to point to new filename
-3. Ensure file is in the same directory as `index.htm`
+## 📊 Browser Support
 
-## 📞 Support & Troubleshooting
+- Chrome/Edge: Full support
+- Firefox: Full support
+- Safari: Full support
+- iOS Safari: Full support (with audio autoplay limitation)
+- Android Chrome: Full support
 
-### Audio not playing?
-- Check browser console for errors (F12 → Console)
-- Some browsers require user gesture before autoplay
-- Click anywhere on page to trigger audio
+## ⚠️ Important Notes
 
-### Images not loading?
-- Ensure image files are in the same directory as `index.htm`
-- Check image filenames match exactly (case-sensitive)
-- Verify GitHub Pages deployment completed (check Settings → Pages)
+### Audio Autoplay
+Some browsers require user interaction for audio autoplay. The music will start automatically when first clicked.
 
-### Links not working?
-- Right-click link → "Inspect" to verify `href` attribute
-- Test external links in new tab
-- Verify WhatsApp link with your account's phone number
+### Image Files
+All book cover images must be present in the same directory as `index.html` for proper display.
 
-### 3D tilt not working?
-- Disable in `prefers-reduced-motion` (accessibility setting)
-- Mobile touch tilt available with finger movement
-- Desktop requires mouse movement over button
+### Mobile Music
+iOS Safari may not autoplay audio due to browser restrictions. User must click the music button to start.
+
+## 📞 Support & Contact
+
+For inquiries about the authors:
+- **Vanina Vergara**: Schedule via Google Calendar links in content
+- **Pablo Mera**: Blog: https://pablomera.blogspot.com/
+- **WhatsApp**: http://wa.link/21ft32
 
 ## 📄 License
 
-This website and all content are the intellectual property of Vanina Vergara and Pablo Mera.
+This website is created for and owned by Vanina Vergara and Pablo Mera. All book covers and content are their intellectual property.
 
 ---
 
+**Created**: July 2026  
 **Version**: 1.0  
-**Last Updated**: June 2026  
-**Deploy URL**: `https://trompo01.github.io/bibliografica`
+**Status**: Ready for GitHub Pages deployment
+
+Enjoy your bilingual bibliography website! 🚀✨
