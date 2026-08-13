@@ -1,283 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual del Inadaptado Lúcido</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('pesp.jpg') center/cover no-repeat;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        header {
-            text-align: center;
-            padding: 25px 15px;
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 3px solid #00ff88;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
-        }
-
-        h1 {
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            font-weight: 900;
-            color: #00ff88;
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-            color: #ff006e;
-            text-shadow: 0 0 8px rgba(255, 0, 110, 0.5);
-            margin-bottom: 5px;
-        }
-
-        .author {
-            font-size: 0.95rem;
-            color: #ffff00;
-            font-style: italic;
-        }
-
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            overflow-y: auto;
-            gap: 20px;
-        }
-
-        .content-section {
-            background: rgba(0, 0, 0, 0.85);
-            border: 2px solid #00ff88;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-        }
-
-        .table-links {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table-links td {
-            padding: 10px;
-            border-bottom: 1px solid #ff006e;
-            text-align: left;
-        }
-
-        .table-links a {
-            color: #00ff88;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 8px 12px;
-            border: 1px solid transparent;
-            border-radius: 5px;
-        }
-
-        .table-links a:hover {
-            color: #ff006e;
-            border: 1px solid #ff006e;
-            background: rgba(255, 0, 110, 0.1);
-            transform: translateX(5px);
-        }
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-            width: 100%;
-        }
-
-        @media (max-width: 480px) {
-            .button-grid {
-                gap: 12px;
-            }
-        }
-
-        .button-3d {
-            aspect-ratio: 1.2;
-            position: relative;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            border: 2px solid #00ff88;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
-            background: rgba(0, 20, 40, 0.7);
-        }
-
-        .button-3d:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
-            border-color: #ff006e;
-        }
-
-        .button-3d img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.8) contrast(1.2);
-            transition: filter 0.3s ease;
-        }
-
-        .button-3d:hover img {
-            filter: brightness(1) contrast(1.3);
-        }
-
-        .button-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
-            color: #00ff88;
-            padding: 10px 8px 5px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.7rem;
-            border-top: 1px solid #ff006e;
-        }
-
-        footer {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 2px solid #00ff88;
-        }
-
-        @media (max-width: 480px) {
-            footer {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .footer-btn {
-            padding: 12px 20px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            border: 2px solid #00ff88;
-            background: rgba(0, 20, 40, 0.9);
-            color: #00ff88;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .footer-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
-            border-color: #ff006e;
-            color: #ff006e;
-        }
-
-        .section-title {
-            color: #ffff00;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .row-label {
-            font-size: 0.8rem;
-            color: #ff006e;
-            font-weight: bold;
-            margin: 10px 0 5px;
-            text-transform: uppercase;
-        }
-    </style>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MANUAL DEL INADAPTADO LÚCIDO — #3</title>
+  <style>
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#fff;background:#050506 url('pesp.jpg') center/cover fixed;padding:18px}
+    .panel{background:linear-gradient(180deg,rgba(0,0,0,0.58),rgba(0,0,0,0.75));padding:14px;border-radius:12px;max-width:980px;margin:18px auto}
+    h1{margin:0 0 10px}
+    table.links td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
+    .grid14{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+    .btn-small{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#0e0f10;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:#fff}
+    .nav{display:flex;gap:10px;justify-content:center;margin-top:12px}
+  </style>
 </head>
 <body>
-    <audio id="bgmusic" autoplay loop>
-        <source src="kelvin.aac" type="audio/aac">
-    </audio>
+  <div class="panel">
+    <h1>MANUAL DEL INADAPTADO LÚCIDO</h1>
+    <p><em>No encajar es una Ventaja. Un manual para pensar mejor y vivir libre</em><br>Autor: Pablo Mera</p>
 
-    <header>
-        <h1>MANUAL DEL INADAPTADO LÚCIDO</h1>
-        <p class="subtitle">No encajar es una Ventaja. Un manual para pensar mejor y vivir libre</p>
-        <p class="author">Autor: Pablo Mera</p>
-    </header>
+    <table class="links" aria-label="Recursos libro">
+      <tbody>
+        <tr><td>* NUEVO* PARA COMPRAR ESTE LIBRO EN PARAGUAY — <a href="http://wa.link/21ft32" target="_blank" rel="noopener">wa.link/21ft32</a></td></tr>
+        <tr><td>Reseña hablada — <a href="https://open.spotify.com/episode/68ViKPcRmymkiRUbdKDO9d?nd=1&dlsi=47136d4ef78a4afa" target="_blank" rel="noopener">Spotify</a></td></tr>
+        <tr><td>Si te interesan mis ideas conversemos — <a href="https://calendar.app.google/KHzX46haiRjtQo6Y9" target="_blank" rel="noopener">Google Meet</a></td></tr>
+        <tr><td>Kindle Version — <a href="https://www.amazon.com/dp/B0GX9ZZPCL" target="_blank" rel="noopener">Amazon Kindle</a></td></tr>
+        <tr><td>Tapa Blanda — <a href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYYXMR9G/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">Paperback</a></td></tr>
+        <tr><td>Tapa Dura — <a href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYZ4D8WN/ref=tmm_hrd_swatch_0" target="_blank" rel="noopener">Hardcover</a></td></tr>
+        <tr><td>Leer Gratis — <a href="https://www.amazon.com/dp/B0GYZ4D8WN?asin=B0GYZ4D8WN&revisionId=&format=4&depth=1" target="_blank" rel="noopener">Leer Gratis</a></td></tr>
+        <tr><td>Hacer Reviews — <a href="https://www.amazon.com/product-reviews/B0GYZ4D8WN/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">Reviews</a></td></tr>
+        <tr><td>Podcasts y Musica — <a href="https://open.spotify.com/user/31wg5yir2hbksdgigz7gqloozfny/playlists" target="_blank" rel="noopener">Playlists</a></td></tr>
+        <tr><td>Goodreads — <a href="https://www.goodreads.com/book/show/251612051-manual-del-inadaptado-l-cido?ac=1" target="_blank" rel="noopener">Goodreads</a></td></tr>
+        <tr><td>Sobre el Autor — <a href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_" target="_blank" rel="noopener">Amazon author</a></td></tr>
+        <tr><td>Blog — <a href="https://pablomera.blogspot.com/" target="_blank" rel="noopener">pablomera.blogspot.com</a></td></tr>
+      </tbody>
+    </table>
 
-    <div class="container">
-        <div class="content-section">
-            <h2 class="section-title">📚 Enlaces Disponibles</h2>
-            <table class="table-links">
-                <tr><td><a href="https://open.spotify.com/episode/68ViKPcRmymkiRUbdKDO9d?nd=1&dlsi=47136d4ef78a4afa" target="_blank">🎙️ Reseña hablada</a></td></tr>
-                <tr><td><a href="https://calendar.app.google/KHzX46haiRjtQo6Y9" target="_blank">💬 Si te interesan mis ideas conversemos por Google Meet</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/dp/B0GX9ZZPCL" target="_blank">📱 Kindle Version</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYYXMR9G/ref=tmm_pap_swatch₀" target="_blank">📖 Tapa Blanda</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYZ4D8WN/ref=tmm_hrd_swatch₀" target="_blank">📘 Tapa Dura</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/dp/B0GYZ4D8WN?asin=B0GYZ4D8WN&revisionId=&format=4&depth=1" target="_blank">🆓 Leer Gratis</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/product-reviews/B0GYZ4D8WN/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Hacer Reviews</a></td></tr>
-                <tr><td><a href="https://open.spotify.com/user/31wg5yir2hbksdgigz7gqloozfny/playlists" target="_blank">🎵 Podcasts y Musica</a></td></tr>
-                <tr><td><a href="https://www.goodreads.com/book/show/251612051-manual-del-inadaptado-l-cido?ac=1&from_search=true&qid=HkwoBXUaLj&rank=2" target="_blank">📚 Goodreads</a></td></tr>
-                <tr><td><a href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=f1214e32-dde0-4b94-b78d-a04562abb350" target="_blank">👤 Sobre el Autor</a></td></tr>
-                <tr><td><a href="https://pablomera.blogspot.com/" target="_blank">✍️ Blog</a></td></tr>
-            </table>
+    <div class="grid14" aria-label="Enlaces de compra 14">
+      <a class="btn-small" href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYYXMR9G/ref=tmm_pap_swatch_0" target="_blank"><img src="amazon.png" alt="" style="height:28px;width:28px">Amazon</a>
+      <a class="btn-small" href="https://www.ibs.it/manual-del-inadaptado-lucido-no-libro-inglese-pablo-mera/e/9798259335431" target="_blank"><img src="ibs.png" alt="" style="height:28px;width:28px">IBS</a>
+      <a class="btn-small" href="https://www.thriftbooks.com/w/manual-del-inadaptado-lcido-no-encajar-es-una-ventaja-un-manual-para-pensar-mejor-y-vivir-libre-spanish-edition_pablo-mera/59002487/?resultid=621f4220-f8fa-4df0-bc9c-2f40966a317f#edition=75671438&idiq=89102418" target="_blank"><img src="th.png" alt="" style="height:28px;width:28px">ThriftBooks</a>
+      <a class="btn-small" href="https://shop.falter.at/detail/9798259335431/manual-del-inadaptado-lcido" target="_blank"><img src="falter.png" alt="" style="height:28px;width:28px">Falter</a>
+      <a class="btn-small" href="https://www.mercadolibre.com.ar/codmr9g-manual-del-inadaptado-lucido-no-encajar-es-una-ven/up/MLAU4150643514" target="_blank"><img src="mercadolibre.png" alt="" style="height:28px;width:28px">MercadoLibre</a>
+      <a class="btn-small" href="https://www.adlibris.com/sv/bok/manual-del-inadaptado-lucido-9798259335431" target="_blank"><img src="adlibris.png" alt="" style="height:28px;width:28px">Adlibris</a>
+      <a class="btn-small" href="https://www.booksamillion.com/p/Manual-Inadaptado-Lcido/Pablo-Mera/9798259335431" target="_blank"><img src="bam.png" alt="" style="height:28px;width:28px">Books-A-Million</a>
+      <a class="btn-small" href="https://www.lafeltrinelli.it/manual-del-inadaptado-lucido-no-libro-inglese-pablo-mera/e/9798259335431" target="_blank"><img src="feltri.png" alt="" style="height:28px;width:28px">LaFeltrinelli</a>
 
-            <h3 class="row-label">🏪 Comprar en diferentes plataformas:</h3>
-            <div class="button-grid">
-                <a href="https://www.amazon.com/MANUAL-DEL-INADAPTADO-L%C3%9ACIDO-encajar/dp/B0GYYXMR9G/ref=tmm_pap_swatch₀" class="button-3d" target="_blank">
-                    <img src="amazon.png" alt="Amazon">
-                    <span class="button-label">Amazon</span>
-                </a>
-                <a href="https://www.ibs.it/manual-del-inadaptado-lucido-no-libro-inglese-pablo-mera/e/9798259335431" class="button-3d" target="_blank">
-                    <img src="ibs.png" alt="IBS">
-                    <span class="button-label">IBS.it</span>
-                </a>
-                <a href="https://www.thriftbooks.com/w/manual-del-inadaptado-lcido-no-encajar-es-una-ventaja-un-manual-para-pensar-mejor-y-vivir-libre-spanish-edition_pablo-mera/59002487/?resultid=621f4220-f8fa-4df0-bc9c-2f40966a317f#edition=75671438&idiq=89102418" class="button-3d" target="_blank">
-                    <img src="th.png" alt="ThriftBooks">
-                    <span class="button-label">ThriftBooks</span>
-                </a>
-                <a href="https://www.lafeltrinelli.it/manual-del-inadaptado-lucido-no-libro-inglese-pablo-mera/e/9798259335431" class="button-3d" target="_blank">
-                    <img src="feltri.png" alt="La Feltrinelli">
-                    <span class="button-label">La Feltrinelli</span>
-                </a>
-                <a href="https://www.booksamillion.com/p/Manual-Inadaptado-Lcido/Pablo-Mera/9798259335431" class="button-3d" target="_blank">
-                    <img src="bam.png" alt="Books a Million">
-                    <span class="button-label">Books a Million</span>
-                </a>
-                <a href="https://www.enbook.cz/cs/kniha/manual-del-inadaptado-lucido_52242714" class="button-3d" target="_blank">
-                    <img src="enbook.jpeg" alt="Enbook">
-                    <span class="button-label">Enbook</span>
-                </a>
-            </div>
-        </div>
+      <a class="btn-small" href="https://www.orellfuessli.ch/shop/home/artikeldetails/A1080206593" target="_blank"><img src="orell.png" alt="" style="height:28px;width:28px">Orell Füssli</a>
+      <a class="btn-small" href="https://www.enbook.cz/cs/kniha/manual-del-inadaptado-lucido_52242714" target="_blank"><img src="enbook.jpeg" alt="" style="height:28px;width:28px">Enbook</a>
+      <a class="btn-small" href="https://shorturl.at/TCC4P" target="_blank"><img src="najla.jpg" alt="" style="height:28px;width:28px">Najla</a>
+      <a class="btn-small" href="https://www.zvab.com/Manual-Inadaptado-Lcido-Pablo-Mera-Independently/32488354645/bd" target="_blank"><img src="ZVAB.png" alt="" style="height:28px;width:28px">ZVAB</a>
+
+      <a class="btn-small" href="https://www.eurobooks.sk/sk/manual-del-inadaptado-lucido" target="_blank"><img src="eurobooks.png" alt="" style="height:28px;width:28px">Eurobooks</a>
+      <a class="btn-small" href="https://www.walmart.com/ip/Manual-del-Inadaptado-L-cido-No-encajar-es-una-Ventaja-Un-manual-para-pensar-mejor-y-vivir-libre-Paperback-9798259335431/20115812885?classType=REGULAR&from=/search" target="_blank"><img src="walmart.png" alt="" style="height:28px;width:28px">Walmart</a>
     </div>
 
-    <footer>
-        <a href="page4.html" class="footer-btn">➡️ NEXT / SIGUIENTE</a>
-        <a href="page2.html" class="footer-btn">⬅️ PREVIOUS / ANTERIOR</a>
-    </footer>
+    <div class="nav">
+      <a href="page4.html">NEXT / SIGUIENTE</a>
+      <a href="page2.html">PREVIOUS / ANTERIOR</a>
+    </div>
+  </div>
 
-    <script>
-        document.getElementById('bgmusic').volume = 0.3;
-    </script>
+  <footer style="text-align:center;margin-top:10px">[*eurobooks.sk y eslite.com solo se acceden usando VPN]</footer>
+  <audio id="bg" src="drake.aac" loop playsinline></audio>
+  <script>document.getElementById('bg').play().catch(()=>document.addEventListener('click',()=>document.getElementById('bg').play(),{once:true}));</script>
 </body>
 </html>
