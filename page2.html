@@ -1,59 +1,247 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CUANDO LA FAMILIA SE ROMPE EN SILENCIO — #2</title>
-  <style>
-    :root{--bg:#0b0c0d;--muted:#c7cfd1;--accent:#00d4ff;--ease:cubic-bezier(.2,.85,.25,1)}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:#070708;color:#fff}
-    body{background-image:url('vesp.jpg');background-size:cover;background-position:center;backdrop-filter:blur(2px);padding:18px}
-    .panel{background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.7));border-radius:12px;padding:14px;max-width:920px;margin:20px auto}
-    h1{margin:0 0 10px 0}
-    table.links{width:100%;border-collapse:collapse}
-    table.links td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
-    .small-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    .btn-small{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#0e0f10;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:#fff}
-    .nav-row{display:flex;gap:10px;justify-content:center;margin-top:12px}
-    .nav-row a{padding:10px 14px;border-radius:12px;background:#111;text-decoration:none;color:#fff}
-    footer{margin-top:10px;font-size:.9rem;color:var(--muted);text-align:center}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Cuando la familia se rompe en silencio</title>
+    <style>
+        :root {
+            --primary: #1a4d7a;
+            --accent: #00d9ff;
+            --text: #ffffff;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            scroll-padding-top: var(--safe-top);
+            padding-top: var(--safe-top);
+            padding-bottom: var(--safe-bottom);
+        }
+
+        body {
+            background-image: url('vesp.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 58, 0.75);
+            z-index: -1;
+            backdrop-filter: blur(3px);
+        }
+
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px calc(20px + var(--safe-bottom));
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--accent);
+            text-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .book-table {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            border-collapse: collapse;
+        }
+
+        .book-table tr {
+            border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .book-table td {
+            padding: 12px 8px;
+        }
+
+        .book-table a {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        .book-table a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 400px;
+            margin: 30px auto;
+        }
+
+        .btn-3d-small {
+            aspect-ratio: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .btn-3d-small:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-3d-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .btn-3d-small:hover img {
+            transform: scale(1.1) brightness(1.2);
+        }
+
+        .btn-3d-small a {
+            position: absolute;
+            inset: 0;
+            text-decoration: none;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .btn-nav {
+            flex: 1;
+            max-width: 150px;
+            padding: 12px 16px;
+            border: 2px solid var(--accent);
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent);
+            color: #0a1f3a;
+            transform: translateY(-4px);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.6rem; }
+            .grid-2x2 { gap: 10px; max-width: 100%; }
+            .btn-nav { max-width: none; }
+        }
+    </style>
 </head>
 <body>
-  <div class="panel" role="main">
-    <h1>CUANDO LA FAMILIA SE ROMPE EN SILENCIO</h1>
-    <p><em>La historia jamás contada de una mujer que se negó a desaparecer</em><br>Autora: Vanina Vergara</p>
+    <audio id="bgMusic" autoplay loop style="display:none;">
+        <source src="eydis.aac" type="audio/aac">
+    </audio>
 
-    <table class="links" aria-label="Recursos">
-      <tbody>
-        <tr><td><a href="https://open.spotify.com/episode/0NPQyJXWyQDAiU5YjKMuTu" target="_blank" rel="noopener">Reseña hablada (Spotify)</a></td></tr>
-        <tr><td><a href="http://wa.link/21ft32" target="_blank" rel="noopener">* NUEVO* PARA COMPRAR ESTE LIBRO EN PARAGUAY</a></td></tr>
-        <tr><td><a href="https://calendar.app.google/qPbm4PQfsSatFHAV9" target="_blank" rel="noopener">Si te interesa mi historia conversemos por Whatsapp (Calendar)</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/dp/B0GX32NHDV" target="_blank" rel="noopener">Kindle Version</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXK7J5GJ/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">Tapa Blanda</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXRZ1356/ref=tmm_hrd_swatch_0" target="_blank" rel="noopener">Tapa Dura</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-SE-ROMPE-SILENCIO-desaparecer/dp/B0GXRZ1356/ref=cm_cr_arp_d_product_top?ie=UTF8&asin=B0GXRZ1356&revisionId=&format=4&depth=1" target="_blank" rel="noopener">Leer Gratis</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/product-reviews/B0GXRZ1356/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">Hacer Reviews</a></td></tr>
-        <tr><td><a href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank" rel="noopener">Podcasts y Musica</a></td></tr>
-        <tr><td><a href="https://www.goodreads.com/book/show/251226179-cuando-la-familia-se-rompe-en-silencio" target="_blank" rel="noopener">Goodreads</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=&ref_" target="_blank" rel="noopener">Sobre el Autor (Amazon)</a></td></tr>
-      </tbody>
-    </table>
+    <div class="page-container">
+        <h1>CUANDO LA FAMILIA SE ROMPE EN SILENCIO</h1>
+        <p class="subtitle">La historia jamás contada de una mujer que se negó a desaparecer</p>
+        <p class="author">Autora: Vanina Vergara</p>
 
-    <div class="small-grid" aria-label="Comprar enlaces">
-      <a class="btn-small" href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXK7J5GJ/ref=tmm_pap_swatch_0" target="_blank" rel="noopener"><img src="amazon.png" alt="" style="height:28px;width:28px">Amazon</a>
-      <a class="btn-small" href="https://www.mercadolibre.com.ar/cod1356-cuando-la-familia-se-rompe-en-silencio-la-historia/up/MLAU3933325251" target="_blank" rel="noopener"><img src="mercadolibre.png" alt="" style="height:28px;width:28px">MercadoLibre</a>
+        <table class="book-table">
+            <tr><td><a href="https://open.spotify.com/episode/0NPQyJXWyQDAiU5YjKMuTu" target="_blank">🎙️ Reseña hablada</a></td></tr>
+            <tr><td><a href="http://wa.link/21ft32" target="_blank">💬 *NUEVO* PARA COMPRAR EN PARAGUAY</a></td></tr>
+            <tr><td><a href="https://calendar.app.google/qPbm4PQfsSatFHAV9" target="_blank">📅 Conversemos por Whatsapp</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0GX32NHDV" target="_blank">📱 Kindle Version</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXK7J5GJ/ref=tmm_pap_swatch₀" target="_blank">📚 Tapa Blanda</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXRZ1356/ref=tmm_hrd_swatch₀" target="_blank">📖 Tapa Dura</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXRZ1356/ref=cm_cr_arp_d_product_top?ie=UTF8&asin=B0GXRZ1356&revisionId=&format=4&depth=1" target="_blank">👓 Leer Gratis</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/product-reviews/B0GXRZ1356/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Hacer Reviews</a></td></tr>
+            <tr><td><a href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank">🎵 Podcasts y Música</a></td></tr>
+            <tr><td><a href="https://www.goodreads.com/book/show/251226179-cuando-la-familia-se-rompe-en-silencio" target="_blank">📖 Goodreads</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=eb5af085-1ace-48ee-9c61-d47621676faa&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=cc3fa529-e2e6-4fce-8dd8-10e038c3bc76" target="_blank">👤 Sobre el Autor</a></td></tr>
+        </table>
+
+        <div class="grid-2x2">
+            <div class="btn-3d-small">
+                <img src="amazon.png" alt="Amazon">
+                <a href="https://www.amazon.com/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer/dp/B0GXK7J5GJ/ref=tmm_pap_swatch₀" target="_blank"></a>
+            </div>
+            <div class="btn-3d-small">
+                <img src="mercadolibre.png" alt="Mercado Libre">
+                <a href="https://www.mercadolibre.com.ar/cod1356-cuando-la-familia-se-rompe-en-silencio-la-historia/up/MLAU3933325251" target="_blank"></a>
+            </div>
+            <div class="btn-3d-small">
+                <img src="amazonjp.jpeg" alt="Amazon Japan">
+                <a href="https://www.amazon.co.jp/CUANDO-FAMILIA-ROMPE-SILENCIO-desaparecer-ebook/dp/B0GX32NHDV/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&sr=8-1" target="_blank"></a>
+            </div>
+            <div class="btn-3d-small">
+                <img src="py.jpg" alt="Paraguay">
+                <a href="http://wa.link/21ft32" target="_blank"></a>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="index.html" class="btn-nav">⬅️ ANTERIOR</a>
+            <a href="page3.html" class="btn-nav">SIGUIENTE ➡️</a>
+        </div>
+
+        <p class="footer-text">*eurobooks.sk y eslite.com solo se acceden usando VPN</p>
     </div>
 
-    <div class="nav-row">
-      <a href="page3.html" class="next">NEXT / SIGUIENTE</a>
-      <a href="index.html" class="prev">PREVIOUS / ANTERIOR</a>
-    </div>
-  </div>
-
-  <footer>[*eurobooks.sk y eslite.com solo se acceden usando VPN]</footer>
-
-  <audio id="bg" src="drake.aac" loop playsinline></audio>
-  <script>document.getElementById('bg').play().catch(()=>document.addEventListener('click',()=>document.getElementById('bg').play(),{once:true}));</script>
+    <script>
+        const audio = document.getElementById('bgMusic');
+        audio.play().catch(e => console.log('Audio play blocked'));
+        document.addEventListener('click', () => audio.play().catch(() => {}), { once: true });
+    </script>
 </body>
 </html>

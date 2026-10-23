@@ -1,67 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CARACOL Author’s Menu — #7</title>
-<style>
-  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#fff;background:#050506 url('CRCENG.png') center/cover;padding:18px}
-  .panel{max-width:980px;margin:18px auto;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.8));padding:14px;border-radius:12px}
-  h1{margin:0}
-  table.links td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
-  .btn-small{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#0e0f10;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:#fff}
-  .nav{display:flex;gap:10px;justify-content:center;margin-top:12px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Caracol - Author's Menu</title>
+    <style>
+        :root {
+            --primary: #1a4d7a;
+            --accent: #00d9ff;
+            --text: #ffffff;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            scroll-padding-top: var(--safe-top);
+            padding-top: var(--safe-top);
+            padding-bottom: var(--safe-bottom);
+        }
+
+        body {
+            background-image: url('CRCENG.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 58, 0.75);
+            z-index: -1;
+        }
+
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px calc(20px + var(--safe-bottom));
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            text-align: center;
+            margin: 20px 0 5px;
+            color: var(--accent);
+            text-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .book-table {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+        }
+
+        .book-table a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+
+        .book-table a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .book-table tr { border-bottom: 1px solid rgba(0, 217, 255, 0.2); }
+        .book-table td { padding: 8px 8px; }
+
+        .grid-16 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .btn-3d-small {
+            aspect-ratio: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-3d-small:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-3d-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-3d-small:hover img {
+            transform: scale(1.1) brightness(1.2);
+        }
+
+        .btn-3d-small a {
+            position: absolute;
+            inset: 0;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-nav {
+            flex: 1;
+            max-width: 150px;
+            padding: 12px 16px;
+            border: 2px solid var(--accent);
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent);
+            color: #0a1f3a;
+            transform: translateY(-4px);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-  <div class="panel">
-    <h1>CARACOL Author’s Menu</h1>
-    <p><em>Inside the Nightclub That Changed Nightlife Forever</em><br>Author: Pablo Mera</p>
+    <audio id="bgMusic" autoplay loop style="display:none;">
+        <source src="eydis.aac" type="audio/aac">
+    </audio>
 
-    <table class="links">
-      <tbody>
-        <tr><td>Visit Caracol's Instagram account — <a href="https://www.instagram.com/caracol.menudeautor/" target="_blank" rel="noopener">Instagram</a></td></tr>
-        <tr><td>Kindle Version — <a href="https://www.amazon.com/dp/B0H58NG5SF" target="_blank" rel="noopener">Kindle</a></td></tr>
-        <tr><td>Paperback — <a href="https://www.amazon.com/dp/B0H599LQGW" target="_blank" rel="noopener">Paperback</a></td></tr>
-        <tr><td>Hardcover — <a href="https://www.amazon.com/dp/B0H594KN1H" target="_blank" rel="noopener">Hardcover</a></td></tr>
-        <tr><td>Read sample — <a href="https://www.amazon.com/dp/B0H594KN1H?sin=B0H594KN1H&revisionId=&format=4&depth=1" target="_blank" rel="noopener">Read sample</a></td></tr>
-        <tr><td>Write a Review — <a href="https://www.amazon.com/product-reviews/B0H58NG5SF/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">Write review</a></td></tr>
-        <tr><td>Download playlists (MP3) — <a href="https://u.pcloud.link/publink/show?code=XZyCLi5Zf8ADzhNMCTy74VqPvsHDJjrQrpPk" target="_blank" rel="noopener">Download MP3s</a></td></tr>
-        <tr><td>Goodreads — <a href="https://www.goodreads.com/book/show/253911876-caracol-author-s-menu" target="_blank" rel="noopener">Goodreads</a></td></tr>
-        <tr><td>Thematic video — <a href="https://u.pcloud.link/publink/show?code=XZlb4i5ZLDukTVNdt2flwmFTR0BWWHCWPr3X" target="_blank" rel="noopener">Video</a></td></tr>
-      </tbody>
-    </table>
+    <div class="page-container">
+        <h1>CARACOL AUTHOR'S MENU</h1>
+        <p class="subtitle">Inside the Nightclub That Changed Nightlife Forever</p>
+        <p class="subtitle" style="font-size: 0.85rem; color: #c0c0c0;">The Story of a Unique Place, Told by Someone Who Survived to Narrate It.</p>
+        <p class="author">Author: Pablo Mera</p>
 
-    <div class="grid">
-      <a class="btn-small" href="https://www.amazon.com/dp/B0H594KN1H" target="_blank"><img src="amazon.png" style="height:28px;width:28px">Amazon</a>
-      <a class="btn-small" href="https://www.libristo.si/sl/knjiga/caracol-author-s-menu_52861450" target="_blank"><img src="libristo.jpg" style="height:28px;width:28px">Libristo</a>
-      <a class="btn-small" href="https://n9.cl/p1k70" target="_blank"><img src="najla.jpg" style="height:28px;width:28px">Najla</a>
-      <a class="btn-small" href="https://www.bol.com/nl/nl/p/caracol-author-s-menu/9300000316977754/" target="_blank"><img src="bol.jpg" style="height:28px;width:28px">Bol</a>
+        <table class="book-table">
+            <tr><td><a href="https://www.instagram.com/caracol.menudeautor/" target="_blank">📸 Visit Caracol's Instagram</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0H58NG5SF" target="_blank">📱 Kindle Version</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0H599LQGW" target="_blank">📚 Paperback</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0H594KN1H" target="_blank">📖 Hardcover</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0H594KN1H?sin=B0H594KN1H&revisionId=&format=4&depth=1" target="_blank">👓 Read Sample</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/product-reviews/B0H58NG5SF/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Write a Review</a></td></tr>
+            <tr><td><a href="https://u.pcloud.link/publink/show?code=XZyCLi5Zf8ADzhNMCTy74VqPvsHDJjrQrpPk" target="_blank">🎵 Free MP3 Playlists</a></td></tr>
+            <tr><td><a href="https://www.goodreads.com/book/show/253911876-caracol-author-s-menu" target="_blank">📖 Goodreads</a></td></tr>
+            <tr><td><a href="https://u.pcloud.link/publink/show?code=XZlb4i5ZLDukTVNdt2flwmFTR0BWWHCWPr3X" target="_blank">🎥 Thematic Video</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/stores/author/B0GYVD1VV3/allbooks?_encoding=UTF8&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=f1214e32-dde0-4b94-b78d-a04562abb350" target="_blank">👤 About the Author</a></td></tr>
+            <tr><td><a href="https://pablomera.blogspot.com/" target="_blank">📝 Blog</a></td></tr>
+        </table>
 
-      <a class="btn-small" href="https://www.saxo.com/dk/caracol-authors-menu_bog_9798181534469" target="_blank"><img src="saxo.jpg" style="height:28px;width:28px">Saxo</a>
-      <a class="btn-small" href="https://www.ibs.it/caracol-author-s-menu-inside-libro-inglese-pablo-mera/e/9798181534469" target="_blank"><img src="ibs.png" style="height:28px;width:28px">IBS</a>
-      <a class="btn-small" href="https://www.zvab.com/CARACOL-AUTHORS-MENU-Mera-Pablo-Independently/32469245829/bd" target="_blank"><img src="ZVAB.png" style="height:28px;width:28px">ZVAB</a>
-      <a class="btn-small" href="https://www.abebooks.com/CARACOL-AUTHORS-MENU-Nightclub-Changed-Nightlife/32466745163/bd" target="_blank"><img src="abe.png" style="height:28px;width:28px">AbeBooks</a>
+        <div class="grid-16">
+            <div class="btn-3d-small"><img src="amazon.png" alt="Amazon"><a href="https://www.amazon.com/dp/B0H594KN1H" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="libristo.jpg" alt="Libristo"><a href="https://www.libristo.si/sl/knjiga/caracol-author-s-menu_52861450" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="bestseller.png" alt="Bestseller"><a href="https://www.bestseller.si/knjiga/9798181534469/caracol-author-s-menu" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="bol.jpg" alt="Bol.com"><a href="https://www.bol.com/nl/nl/p/caracol-author-s-menu/9300000316977754/" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="saxo.jpg" alt="Saxo"><a href="https://www.saxo.com/dk/caracol-authors-menu_bog_9798181534469" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="ibs.png" alt="IBS"><a href="https://www.ibs.it/caracol-author-s-menu-inside-libro-inglese-pablo-mera/e/9798181534469" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="ZVAB.png" alt="ZVAB"><a href="https://www.zvab.com/CARACOL-AUTHORS-MENU-Mera-Pablo-Independently/32469245829/bd" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="abe.png" alt="AbeBooks"><a href="https://www.abebooks.com/CARACOL-AUTHORS-MENU-Nightclub-Changed-Nightlife/32466745163/bd" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="adlibris.png" alt="Adlibris"><a href="https://www.adlibris.com/fi/kirja/caracol-authors-menu-9798181534469" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="amazonjp.jpeg" alt="Amazon JP"><a href="https://www.amazon.co.jp/s?k=Pablo+Mera&language=ja_JP" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="feltri.png" alt="La Feltrinelli"><a href="https://www.lafeltrinelli.it/caracol-author-s-menu-inside-libro-inglese-pablo-mera/e/9798181534469" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="py.jpg" alt="Paraguay"><a href="http://wa.link/21ft32" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="amazones.png" alt="Amazon ES"><a href="https://www.amazon.es/-/en/Pablo-Mera/dp/B0H594KN1H/" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="enbook.jpeg" alt="Enbook"><a href="https://www.enbook.cz/cs/kniha/caracol-author-s-menu_52861450" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="eurobooks.png" alt="Eurobooks"><a href="https://www.eurobooks.sk/sk/caracol-authors-menu" target="_blank"></a></div>
+            <div class="btn-3d-small"><img src="walmart.png" alt="Walmart"><a href="https://www.walmart.com/ip/Caracol-Author-s-Menu-Inside-the-Nightclub-That-Changed-Nightlife-Forever-Paperback-9798181534469/20417702086" target="_blank"></a></div>
+        </div>
 
-      <a class="btn-small" href="https://www.adlibris.com/fi/kirja/caracol-authors-menu-9798181534469" target="_blank"><img src="adlibris.png" style="height:28px;width:28px">Adlibris</a>
-      <a class="btn-small" href="https://www.amazon.co.jp/s?k=Pablo+Mera&language=ja_JP" target="_blank"><img src="amazonjp.jpeg" style="height:28px;width:28px">Amazon JP</a>
-      <a class="btn-small" href="https://www.lafeltrinelli.it/caracol-author-s-menu-inside-libro-inglese-pablo-mera/e/9798181534469" target="_blank"><img src="feltri.png" style="height:28px;width:28px">LaFeltrinelli</a>
-      <a class="btn-small" href="http://wa.link/21ft32" target="_blank"><img src="py.jpg" style="height:28px;width:28px">Compra Paraguay</a>
+        <div class="footer-nav">
+            <a href="page6.html" class="btn-nav">⬅️ PREVIOUS</a>
+            <a href="page8.html" class="btn-nav">NEXT ➡️</a>
+        </div>
 
-      <a class="btn-small" href="https://www.amazon.es/-/en/Pablo-Mera/dp/B0H594KN1H" target="_blank"><img src="amazones.png" style="height:28px;width:28px">Amazon ES</a>
-      <a class="btn-small" href="https://www.enbook.cz/cs/kniha/caracol-author-s-menu_52861450" target="_blank"><img src="enbook.jpeg" style="height:28px;width:28px">Enbook</a>
-      <a class="btn-small" href="https://www.eurobooks.sk/sk/caracol-authors-menu" target="_blank"><img src="eurobooks.png" style="height:28px;width:28px">Eurobooks</a>
-      <a class="btn-small" href="https://www.walmart.com/ip/Caracol-Author-s-Menu-Inside-the-Nightclub-That-Changed-Nightlife-Forever-Paperback-9798181534469/20417702086" target="_blank"><img src="walmart.png" style="height:28px;width:28px">Walmart</a>
+        <p class="footer-text">*eurobooks.sk and eslite.com require VPN access</p>
     </div>
 
-    <div class="nav">
-      <a href="page8.html">NEXT / SIGUIENTE</a>
-      <a href="page6.html">PREVIOUS / ANTERIOR</a>
-    </div>
-  </div>
-
-  <footer style="text-align:center;margin-top:10px">[*eurobooks.sk y eslite.com solo se acceden usando VPN]</footer>
-  <audio id="bg" src="drake.aac" loop playsinline></audio>
-  <script>document.getElementById('bg').play().catch(()=>document.addEventListener('click',()=>document.getElementById('bg').play(),{once:true}));</script>
+    <script>
+        const audio = document.getElementById('bgMusic');
+        audio.play().catch(e => console.log('Audio play blocked'));
+    </script>
 </body>
 </html>

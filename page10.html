@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>La Niña que Aprendió a Callar</title>
+    <style>
+        :root {
+            --primary: #1a4d7a;
+            --accent: #00d9ff;
+            --text: #ffffff;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            scroll-padding-top: var(--safe-top);
+            padding-top: var(--safe-top);
+            padding-bottom: var(--safe-bottom);
+        }
+
+        body {
+            background-image: url('lnqaac.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 58, 0.75);
+            z-index: -1;
+        }
+
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 16px calc(20px + var(--safe-bottom));
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .content-box {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .book-table {
+            width: 100%;
+            margin: 0 auto 40px;
+            border-collapse: collapse;
+        }
+
+        .book-table a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            background: rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .book-table a:hover {
+            background: var(--accent);
+            color: #0a1f3a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+        }
+
+        .book-table td {
+            padding: 5px;
+        }
+
+        .badge-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .btn-nav {
+            flex: 1;
+            max-width: 150px;
+            padding: 12px 16px;
+            border: 2px solid var(--accent);
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent);
+            color: #0a1f3a;
+            transform: translateY(-4px);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" autoplay loop style="display:none;">
+        <source src="eydis.aac" type="audio/aac">
+    </audio>
+
+    <div class="page-container">
+        <div class="content-box">
+            <h1>LA NIÑA QUE APRENDIÓ A CALLAR</h1>
+
+            <table class="book-table">
+                <tr>
+                    <td>
+                        <a href="https://heyzine.com/flip-book/ab7800813d.html" target="_blank">
+                            <img src="badge.png" alt="Leer Ahora" class="badge-img">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://heyzine.com/flip-book/ab7800813d.html" target="_blank">
+                            📖 Leer Ahora
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="footer-nav">
+                <a href="page9.html" class="btn-nav">⬅️ ANTERIOR</a>
+                <a href="page11.html" class="btn-nav">SIGUIENTE ➡️</a>
+            </div>
+
+            <p class="footer-text">*eurobooks.sk y eslite.com solo se acceden usando VPN</p>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        audio.play().catch(e => console.log('Audio play blocked'));
+    </script>
+</body>
+</html>

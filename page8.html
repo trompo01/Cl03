@@ -1,54 +1,262 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>WHEN FAMILIES FRACTURE IN SILENCE — #8</title>
-<style>
-  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#fff;background:#050506 url('veng.jpg') center/cover;padding:18px}
-  .panel{max-width:980px;margin:18px auto;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.8));padding:14px;border-radius:12px}
-  h1{margin:0}
-  table.links td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
-  .btn-small{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#0e0f10;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:#fff}
-  .nav{display:flex;gap:10px;justify-content:center;margin-top:12px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>When Families Fracture in Silence</title>
+    <style>
+        :root {
+            --primary: #1a4d7a;
+            --accent: #00d9ff;
+            --text: #ffffff;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            scroll-padding-top: var(--safe-top);
+            padding-top: var(--safe-top);
+            padding-bottom: var(--safe-bottom);
+        }
+
+        body {
+            background-image: url('veng.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 58, 0.75);
+            z-index: -1;
+        }
+
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px calc(20px + var(--safe-bottom));
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            text-align: center;
+            margin: 20px 0 5px;
+            color: var(--accent);
+            text-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .book-table {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 25px;
+            border-collapse: collapse;
+        }
+
+        .book-table a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.93rem;
+        }
+
+        .book-table a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .book-table tr { border-bottom: 1px solid rgba(0, 217, 255, 0.2); }
+        .book-table td { padding: 10px 8px; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 12px;
+            max-width: 300px;
+            margin: 30px auto;
+        }
+
+        .btn-3d-small {
+            aspect-ratio: 1.5;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-3d-small:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-3d-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-3d-small:hover img {
+            transform: scale(1.1) brightness(1.2);
+        }
+
+        .btn-3d-small a {
+            position: absolute;
+            inset: 0;
+        }
+
+        .alt-button {
+            max-width: 300px;
+            height: 100px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .alt-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        .alt-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: alternate 6s ease-in-out infinite;
+        }
+
+        @keyframes alternate {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        .alt-button a {
+            position: absolute;
+            inset: 0;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-nav {
+            flex: 1;
+            max-width: 150px;
+            padding: 12px 16px;
+            border: 2px solid var(--accent);
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent);
+            color: #0a1f3a;
+            transform: translateY(-4px);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="panel">
-    <h1>WHEN FAMILIES FRACTURE IN SILENCE</h1>
-    <p><em>A true story of silence, loss, and a mother's fight to be seen</em><br>Author: Vanina Vergara</p>
+    <audio id="bgMusic" autoplay loop style="display:none;">
+        <source src="eydis.aac" type="audio/aac">
+    </audio>
 
-    <table class="links">
-      <tbody>
-        <tr><td><a href="https://open.spotify.com/episode/2ZsEHMdtUXzwtVT3jvO9G7?si=IWwanv2ERhq75Pfq0itE7w" target="_blank" rel="noopener">Spoken Review (Spotify)</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0" target="_blank" rel="noopener">Kindle Version</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch_0" target="_blank" rel="noopener">Paperback</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/dp/B0GY8741Q3" target="_blank" rel="noopener">Hardcover</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=tmm_kin_swatch_0?asin=B0GX35M57P&revisionId=e5eb7937&format=3&depth=1" target="_blank" rel="noopener">Read sample</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/product-reviews/B0GX35M57P/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank" rel="noopener">Write a Review</a></td></tr>
-        <tr><td><a href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank" rel="noopener">Handpicked Music and Podcasts</a></td></tr>
-        <tr><td><a href="https://www.goodreads.com/book/show/251052005-when-families-fracture-in-silence" target="_blank" rel="noopener">Goodreads</a></td></tr>
-        <tr><td><a href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0" target="_blank" rel="noopener">About the Author</a></td></tr>
-      </tbody>
-    </table>
+    <div class="page-container">
+        <h1>WHEN FAMILIES FRACTURE IN SILENCE</h1>
+        <p class="subtitle">A true story of silence, loss, and a mother's fight to be seen</p>
+        <p class="author">Author: Vanina Vergara</p>
 
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
-      <a class="btn-small" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch_0" target="_blank"><img src="amazon.png" style="height:28px;width:28px">Amazon (US)</a>
-      <a class="btn-small" href="https://www.amazon.co.jp/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&sr=8-1" target="_blank"><img src="amazonjp.jpeg" style="height:28px;width:28px">Amazon JP</a>
+        <table class="book-table">
+            <tr><td><a href="https://open.spotify.com/episode/2ZsEHMdtUXzwtVT3jvO9G7?si=IWwanv2ERhq75Pfq0itE7w" target="_blank">🎙️ Spoken Review</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/" target="_blank">📱 Kindle Version</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/" target="_blank">📚 Paperback</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/dp/B0GY8741Q3" target="_blank">📖 Hardcover</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/" target="_blank">👓 Read Sample</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/product-reviews/B0GX35M57P/ref=cm_cr_dp_d_show_all_top?_encoding=UTF8&ie=UTF8&reviewerType=all_reviews" target="_blank">⭐ Write a Review</a></td></tr>
+            <tr><td><a href="https://open.spotify.com/user/317ykrwrwfzqf42uw75bcp3awzqi/playlists" target="_blank">🎵 Handpicked Music & Podcasts</a></td></tr>
+            <tr><td><a href="https://www.goodreads.com/book/show/251052005-when-families-fracture-in-silence" target="_blank">📖 Goodreads</a></td></tr>
+            <tr><td><a href="https://www.amazon.com/stores/author/B0GX6FYBXK/allbooks?ingress=0&visitId=eb5af085-1ace-48ee-9c61-d47621676faa&ref_=aufs_ap_ahdr_dsk_ab&ccs_id=cc3fa529-e2e6-4fce-8dd8-10e038c3bc76" target="_blank">👤 About the Author</a></td></tr>
+        </table>
+
+        <div class="grid-2">
+            <div class="btn-3d-small">
+                <img src="amazon.png" alt="Amazon">
+                <a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/" target="_blank"></a>
+            </div>
+            <div class="btn-3d-small">
+                <img src="amazonjp.jpeg" alt="Amazon Japan">
+                <a href="https://www.amazon.co.jp/When-Families-Fracture-Silence-Disappear-ebook/dp/B0GX35M57P/" target="_blank"></a>
+            </div>
+        </div>
+
+        <div class="alt-button">
+            <img id="altImg" src="veng.jpg" alt="Book Cover">
+            <a href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/" target="_blank"></a>
+        </div>
+
+        <div class="footer-nav">
+            <a href="page7.html" class="btn-nav">⬅️ PREVIOUS</a>
+            <a href="page9.html" class="btn-nav">NEXT ➡️</a>
+        </div>
+
+        <p class="footer-text">*eurobooks.sk and eslite.com require VPN access</p>
     </div>
 
-    <div style="text-align:center;margin-top:12px">
-      <a class="btn-small" href="https://www.amazon.com/When-Families-Fracture-Silence-Disappear/dp/B0GX7TCKHD/ref=tmm_pap_swatch_0" target="_blank"><img src="veng.jpg" alt="" style="height:36px;width:36px;border-radius:6px;margin-right:8px">Comprar en Amazon</a>
-    </div>
+    <script>
+        const audio = document.getElementById('bgMusic');
+        audio.play().catch(e => console.log('Audio play blocked'));
 
-    <div class="nav">
-      <a href="page9.html">NEXT / SIGUIENTE</a>
-      <a href="page6.html">PREVIOUS / ANTERIOR</a>
-    </div>
-  </div>
-
-  <footer style="text-align:center;margin-top:10px">[*eurobooks.sk y eslite.com solo se acceden usando VPN]</footer>
-  <audio id="bg" src="drake.aac" loop playsinline></audio>
-  <script>document.getElementById('bg').play().catch(()=>document.addEventListener('click',()=>document.getElementById('bg').play(),{once:true}));</script>
+        // Alternate button images
+        const altImg = document.getElementById('altImg');
+        const images = ['veng.jpg', 'amazon.png'];
+        let currentIndex = 0;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            altImg.src = images[currentIndex];
+        }, 3000);
+    </script>
 </body>
 </html>
